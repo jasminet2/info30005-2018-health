@@ -78,6 +78,12 @@ text-align: center;
 
 }
 
+p {
+
+  font-size: 15px;
+
+}
+
 input[type=text] {
     width: 100%;
     padding: 12px 20px;
@@ -97,5 +103,13 @@ background-color: rgba(0,0,0,.5);
 border-radius: 50px;
 
 
+
+}
+
+.footer {
+
+background-color: rgba(0,0,0,1);
+
+text-align: center;
 
 }
