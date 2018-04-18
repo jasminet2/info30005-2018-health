@@ -80,4 +80,16 @@ input[type = "number"]{
 	font-size: 1.2em;
 }
 
+/* 
+Just so that it looks neater - I'll check it again
 
+.habit_title{
+    border-radius: 5px;
+    margin: auto;
+    padding: 10px;
+    width: 300px;
+    border: dashed;
+    background: #FFFFFF;
+    float: left;
+}
+*/
