@@ -5,7 +5,6 @@
 #welcome {
 
 font-family: 'Montserrat';
-font-size: 1.5em;
 position: absolute;
 top: 50%;
 left: 50%;
@@ -13,6 +12,23 @@ transform: translate(-50%, -50%);
 text-align: center;
 
 }
+
+#welcome h1{
+
+  font-size: 1.9em;
+  margin-bottom: 20px;
+
+}
+#welcome input{
+
+  margin: 20px 15px 20px 15px;;
+
+}
+
+
+
+
+
 
 /****** NAVBAR SECTION *******/
 
@@ -53,17 +69,36 @@ border-bottom: 2px solid #f5f2dc;
 
 .section-about {
 background-color: orange;
-position: relative;
 text-align: center;
 
 }
 
+.section-about h1{
+  margin-bottom: 15px;
+}
+
+.section-about h2{
+  margin: auto;
+  margin-bottom: 50px;
+  font-size: 0.9em;
+  width: 60%;
+
+
+
+}
+
 .aboutus {
-position: absolute;
-top: 40%;
-width: 80%;
-left: 50%;
-transform: translate(-50%, -50%);
+  width: 80%;
+  margin: auto;
+  margin-bottom: 50px;
+
+
+}
+.aboutus p{
+
+width: 60%;
+text-align: center;
+margin: auto;
 
 }
 
@@ -75,12 +110,12 @@ transform: translate(-50%, -50%);
   text-align: center;
   list-style: none;
 
+
 }
 
 .section-about input{
-  position: absolute;
-  top: 70%;
-  transform: translate(-50%, -50%);
+
+
 
 }
 
@@ -103,8 +138,6 @@ background-position: center;
   width: 50%;
   margin-top: 50px;
 
-
-
 }
 
 
@@ -113,16 +146,27 @@ background-position: center;
 
 font-size: 1em;
 margin-bottom: 20px;
+list-style: none;
+text-align: center;
 
 }
 
+.habit-div div{
+
+text-align: center;
+
+}
+.habit-div ul{
+margin-left: 40px;
+margin-bottom: 40px;
+
+
+}
 
 .habit-div img{
 
-
   height: 70%;
   width: 70%;
-
 
 }
 
@@ -147,6 +191,7 @@ html {
 .full-section{
 
 height: 100vh;
+overflow: hidden;
 
 }
 
@@ -178,6 +223,7 @@ header {
     background-size: cover;
     background-position: center;
     height: 100vh;
+    overflow: auto;
 
 
 }
@@ -203,8 +249,24 @@ color: white;
 font-weight: 300px;
 background-color: rgba(0,0,0,.5);
 border-radius: 50px;
+font-size: 1em;
 
 }
+
+
+.butt:hover {
+
+display: inline-block;
+padding: 10px 30px;
+font-family: 'Montserrat';
+color: white;
+font-weight: 300px;
+background-color: rgba(0,0,0,.9);
+border-radius: 50px;
+font-size: 1em;
+
+}
+
 .butt2{
 
 display: inline-block;
@@ -217,6 +279,23 @@ background-color: rgba(0,0,0, 0);
 border-radius: 50px;
 
 }
+
+.butt2:hover{
+
+display: inline-block;
+padding: 20px 60px;
+font-family: 'Montserrat';
+color: white;
+font-weight: 300px;
+font-size: 0.8em;
+background-color: rgba(0,0,0, 0.7);
+border-radius: 50px;
+
+}
+
+
+
+
 .center {
 
 text-align: center;
