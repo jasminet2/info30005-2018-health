@@ -21,6 +21,7 @@ app.get('/users', router);
 
 //displays user with specific id using req.params
 app.get('/users/:id', router);
+app.get('/comingsoon', router);
 
 /*app.listen(3000, function(){
 console.log('Express serving at port 3000');

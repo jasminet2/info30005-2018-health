@@ -1,34 +1,20 @@
 @import url('https://fonts.googleapis.com/css?family=Montserrat');
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-html {
-  background-color: #fff;
-  color: #deeaee;
-  font-family: 'Montserrat';
-  font-weight: 300;
-  font-size: 25px;
-  text-rendering: optimizeLegibility;
-}
 
 
+#welcome {
 
-
-.row {
-
-max-width: 80%;
-margin: 0 auto;
+font-family: 'Montserrat';
+font-size: 1.5em;
+position: absolute;
+top: 50%;
+left: 50%;
+transform: translate(-50%, -50%);
+text-align: center;
 
 }
 
-a {
-color: inherit;
-text-decoration: none;
-}
+/****** NAVBAR SECTION *******/
 
 nav {
 
@@ -49,10 +35,146 @@ nav li{
   margin-left: 40px;
 }
 
+.navlinks li{
+padding-top: 15px;
+font-size: 20px;
+text-transform: uppercase;
+
+
+}
+.navlinks li:hover{
+font-size: 22px;
+border-bottom: 2px solid #f5f2dc;
+
+}
+
+
+/****** ABOUT US SECTION *******/
+
+.section-about {
+background-color: orange;
+position: relative;
+text-align: center;
+
+}
+
+.aboutus {
+position: absolute;
+top: 40%;
+width: 80%;
+left: 50%;
+transform: translate(-50%, -50%);
+
+}
+
+
+.aboutus li{
+  display: inline-block;
+  float: left;
+  width: 33.33%;
+  text-align: center;
+  list-style: none;
+
+}
+
+.section-about input{
+  position: absolute;
+  top: 70%;
+  transform: translate(-50%, -50%);
+
+}
+
+
+
+
+/***************** Habit tracker section ********************/
+
+.section-habit {
+background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,.5)), url(images/twofemales.jpg);
+background-size: cover;
+background-position: center;
+
+}
+
+
+.habit-div {
+
+  float: left;
+  width: 50%;
+  margin-top: 50px;
+
+
+
+}
+
+
+
+.habit-div li{
+
+font-size: 1em;
+margin-bottom: 20px;
+
+}
+
+
+.habit-div img{
+
+
+  height: 70%;
+  width: 70%;
+
+
+}
+
+
+/****** ENTIRE WEBSITE SECTION *******/
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+  background-color: #fff;
+  color: #deeaee;
+  font-family: 'Montserrat';
+  font-weight: 300;
+  font-size: 25px;
+  text-rendering: optimizeLegibility;
+  overflow-x: hidden;
+}
+
+.full-section{
+
+height: 100vh;
+
+}
+
+
+.row {
+
+max-width: 80%;
+margin: 0 auto;
+
+}
+
+a {
+color: inherit;
+text-decoration: none;
+}
+
+
+.section-headers{
+
+font-size: 3.5em;
+text-align: center;
+padding: 30px 0px 20px 0px;
+
+}
 
 header {
 
-    background-image: linear-gradient(rgba(0,0,0,1), rgba(0,0,0,.5)), url(images/gym.jpg);
+    background-image: linear-gradient(rgba(0,0,0,1), rgba(0,0,0,.2)), url(images/running.jpg);
     background-size: cover;
     background-position: center;
     height: 100vh;
@@ -66,31 +188,11 @@ h1 {
 
 }
 
-#comingSoon {
-
-font-family: 'Montserrat';
-font-size: 50px;
-position: absolute;
-top: 50%;
-left: 50%;
-transform: translate(-50%, -50%);
-text-align: center;
-
-}
-
 p {
 
   font-size: 15px;
 
 }
-
-input[type=text] {
-    width: 100%;
-    padding: 12px 20px;
-    margin: 8px 0;
-    box-sizing: border-box;
-}
-
 
 .butt {
 
@@ -102,14 +204,21 @@ font-weight: 300px;
 background-color: rgba(0,0,0,.5);
 border-radius: 50px;
 
-
-
 }
 
-.footer {
-
-background-color: rgba(0,0,0,1);
+.center {
 
 text-align: center;
 
+}
+
+
+
+.clearfix {zoom: 1;}
+.clearfix:after {
+    content: '.';
+    clear: both;
+    display: block;
+    height: 0;
+    visibility: hidden;
 }

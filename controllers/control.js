@@ -6,12 +6,18 @@ module.exports = {
           res.send("Goodbye World");
       },
 
-      comingSoon: function(req, res) {
+      homepage: function(req, res) {
 
           res.render('index.ejs', {userData});
 
       },
-      
+
+      comingSoon: function(req, res) {
+
+          res.render('comingsoon.ejs', {userData});
+
+      },
+
       showUsers: function(req, res) {
 
           res.render('users.ejs', {userData});
