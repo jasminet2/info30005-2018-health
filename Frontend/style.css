@@ -80,7 +80,7 @@ input[type = "number"]{
 	font-size: 1.2em;
 }
 
-<<<<<<< HEAD
+
 #habitRow{
 	margin-top: 30px;
 	
@@ -177,7 +177,7 @@ input[type = "number"]{
 .form-switch input:checked + i::after { transform: translate3d(22px, 2px, 0); }
 
 
-=======
+
 /* 
 Just so that it looks neater - I'll check it again
 
@@ -191,4 +191,3 @@ Just so that it looks neater - I'll check it again
     float: left;
 }
 */
->>>>>>> d940e025b913d8faec8a7b5ee3c2ead1ed9776d8
