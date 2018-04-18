@@ -90,15 +90,17 @@ text-align: center;
 .aboutus {
   width: 80%;
   margin: auto;
-  margin-bottom: 50px;
+  margin-bottom: 60px;
 
 
 }
 .aboutus p{
 
-width: 60%;
+width: 70%;
 text-align: center;
 margin: auto;
+font-size: 0.7em;
+font-weight: bold;
 
 }
 
@@ -129,14 +131,14 @@ background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,.5)), url(images/t
 background-size: cover;
 background-position: center;
 
-}
 
+}
 
 .habit-div {
 
   float: left;
   width: 50%;
-  margin-top: 50px;
+  margin-top: 10%;
 
 }
 
