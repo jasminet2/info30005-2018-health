@@ -1,4 +1,5 @@
 
+
 // JavaScript Document
 
 var d = new Date();
@@ -37,5 +38,6 @@ function addContent(){
 		repesInput.val('');	
 	};
 }
+
 
 addButtonElement.on('click', addContent);
