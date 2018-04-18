@@ -1,76 +1,78 @@
-<!doctype html>
+<!- Wrap JavaScript with percent tags->
+<!DOCTYPE html>
 <html>
 <head>
-<meta charset="utf-8">
-<title>Habit Tracker</title>
-
-<!-- css -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/css/bootstrap-select.min.css">
-<link rel="stylesheet" href="habitstyle.css">
-<link rel="stylesheet" href="habitstyle2.css">
-
-<!-- Javascript -->
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-<script src="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/js/bootstrap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/js/bootstrap-select.min.js"></script>
-
+  <link rel="stylesheet" type="text/css" href="../css/normalize.css">
+  <link rel="stylesheet" type="text/css" href="../css/grid.css">
+  <link rel="stylesheet" type="text/css" href="habitstyle2.css">
+  <script src="javascript/animations.js"></script>
+  <title>1health</title>
 
 </head>
 <body>
+    <header>
+        <nav>
+          <div class="row">
+            <a href="#" class="logo"><h1>1Health</h1></a>
+            <ul class="navlinks">
+              <a href="#"><li>Login</li></a>
+              <a href="#" id="page"><li>Habit tracker</li></a>
+              <a href="#"><li>Home</li></a>
+            </ul>
+          </div>
 
 
-	<header>
-    <nav>
-      <div class="row">
-        <a href="#" class="logo"><h1>1Health</h1></a>
-        <ul class="navlinks">
-          <a href="#"><li>Login</li></a>
-          <a href="#"><li>Habit tracker</li></a>
-          <a href="#"><li>Home</li></a>
-        </ul>
-      </div>
+        </nav>
 
 
-    </nav>
 
-  </header>
-<div id="today"></div>
+    </header>
+		<section class="profile">
+			<div class="profileDiv">
+			<div class="profilePic"><img src='images/face.jpg'></div>
+			<div class="profilePic2"><ul><li>Name: <%=userData[1].name%> </li><li>Streak: <%=userData[1].streak%></li><li>Goals Achieved:  <%=userData[1].goals%></li></ul></div>
+			<div class="profilePic3">Points:  <%=userData[1].points%></div>
+		</div>
+		</section>
 
-<div class="container">
+		<section class="habit">
+			<div>
+				<ul>
+					<li><input type="text"></input>
+					</li>
+					<li>
+						<select class="selectpicker category show-tick" id="category">
+					<option selected>Category...</option>
+					<option value="efficiency">Efficiency</option>
+					<option value="health">Health</option>
+					<option value="hobbies">Hobbies </option>
+					<option value="sports">Sports</option>
+					<option value="study">Study</option>
+				</select>
+					</li>
+					<li><input type="submit" value="Add Habit" class="butt"></li>
+				</ul>
 
-	<div id="app">
-		<div id="insert">
-<h2>Getting Started with a New Habit... </h2>
-		  <form id="new_habit" action="/" method="post">
-				<div class="category">
-					<select class="selectpicker category show-tick" name="category">
-						<option selected>Category...</option>
-						<option value="efficiency">Efficiency</option>
-						<option value="health">Health</option>
-						<option value="hobbies">Hobbies </option>
-						<option value="sports">Sports</option>
-						<option value="study">Study</option>
-					</select>
-				</div>
- 				<div class ="input">
- 					<input type = "text" name = "title" placeholder="Habit Title">
-					<input type = "number" min="1" name="repes"  placeholder="Repetitions">
-				</div>
-				<div class = "button">
-				<input type="submit" value="+ ADD" id= "creator"/>
-				</div>
-		  </form>
 
- 		</div>
-	</div>
-</div>
+			</div>
+		</section>
+		<!--
+		<section class="habit-tab">
+			<div class= "tabs">
+				<ul>
+					<li><input type="checkbox" name="Monday" value="Monday">Monday</input></li>
+					<li><input type="checkbox" name="Tuesday" value="Tuesday">Tuesday</input></li>
+					<li><input type="checkbox" name="Wednesday" value="Wednesday">Wednesday</input></li>
+					<li><input type="checkbox" name="Thursday" value="Thursday">Thursday</input></li>
+					<li><input type="checkbox" name="Friday" value="Friday">Friday</input></li>
+					<li><input type="checkbox" name="Saturday" value="Saturday">Saturday</input></li>
+					<li><input type="checkbox" name="Sunday" value="Sunday">Sunday</input></li>
+				</ul>
 
-<pre id="result">
-</pre>
+
+			</div>
+		</section>
+-->
 
 </body>
-
-</html>
-
-<script src="../core.js"></script>
+<html>
