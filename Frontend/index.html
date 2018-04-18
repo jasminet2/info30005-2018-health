@@ -1,0 +1,58 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Habit Tracker</title>
+
+<!-- css --> 
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/css/bootstrap-select.min.css">
+<link rel="stylesheet" href="style.css">
+
+<!-- Javascript -->
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script src="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/js/bootstrap-select.min.js"></script>
+
+
+</head>
+<body>
+<div id="today"></div>
+
+<div class="container">
+	
+	<div id="app">
+		<div id="insert">
+<h2>Getting Started with a New Habit... </h2>
+		  <form id="new_habit" action="/" method="post">
+				<div class="category">
+					<select class="selectpicker category show-tick" name="category">
+						<option selected>Category...</option>
+						<option value="efficiency">Efficiency</option>
+						<option value="health">Health</option>
+						<option value="hobbies">Hobbies </option>
+						<option value="sports">Sports</option>
+						<option value="study">Study</option>
+					</select>
+				</div>
+ 				<div class ="input">
+ 					<input type = "text" name = "title" placeholder="Habit Title">
+					<input type = "number" min="1" name="repes"  placeholder="Repetitions">
+				</div>
+				<div class = "button">
+				<input type="submit" value="+ ADD" id= "creator"/>
+				</div>
+		  </form>
+
+ 		</div>
+	</div>
+</div>
+
+<pre id="result">
+</pre>
+
+</body>
+
+</html>
+
+<script src="core.js"></script>
