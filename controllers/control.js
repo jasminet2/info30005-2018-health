@@ -18,6 +18,12 @@ module.exports = {
 
       },
 
+      habit: function(req, res) {
+
+          res.render('habit.ejs', {userData});
+
+      },
+
       showUsers: function(req, res) {
 
           res.render('users.ejs', {userData});
