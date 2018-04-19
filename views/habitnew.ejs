@@ -1,0 +1,76 @@
+
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Habit Tracker</title>
+
+<!-- css -->
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/css/bootstrap-select.min.css">
+<link rel="stylesheet" href="../css/newstyle.css">
+
+<!-- Javascript -->
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
+
+<script src="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/js/bootstrap-select.min.js"></script>
+<!-- handlebars.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.10/handlebars.js"></script>
+
+
+
+</head>
+<body>
+<div id="today"></div>
+
+<div class="container">
+	
+	<div id="app">
+	  <div id="insert">
+		  <h2>Getting Started with a New Habit... </h2>
+		  <div class="category">
+			<select class="selectpicker category show-tick" id="category">
+					<option value="" selected>Category...</option>
+					<option value= "0">Efficiency</option>
+					<option value= "1">Health</option>
+					<option value= "2">Hobbies </option>
+					<option value= "3">Sports</option>
+					<option value= "4">Study</option>
+			</select>
+			</div>
+		  <div class ="input">
+ 				<input type = "text" id = "title" value="" placeholder="Habit Title">
+				<input type = "number" min="1" value="" id ="repes"  placeholder="Repetitions">
+			</div>
+		  <div class = "button">
+			  <button id= "addHabit">+ ADD</button>
+		  </div>
+
+ 		</div>
+ 		<div id="habitRow"></div>
+	</div>
+</div>
+
+
+
+
+</body>
+
+</html>
+<script id="entry-template" type="text/x-handlebars-template">
+	<div class="habitStatus" id={{counter}}>
+		<div class="icon"><img src="{{imgURL}}"></div>
+		<div class="habitTitle">{{title}}</div>
+		<div class="completed">{{repes}} times</div>
+		<div class="switch">
+			<label class="form-switch">
+  				<input type="checkbox" value="finished">
+  				<i></i>
+			</label>
+		</div>
+	</div>
+</script>
+<script src="../core.js"></script>

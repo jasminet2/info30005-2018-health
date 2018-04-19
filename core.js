@@ -1,3 +1,5 @@
+
+
 // JavaScript Document
 
 var d = new Date();
@@ -11,27 +13,51 @@ function formatDate(date) {
 }
 document.getElementById("today").innerHTML = formatDate(d);
 
-// Convert HTML form input into JSON object.
-$.fn.serializeObject = function()
-{
-    var o = {};
-    var a = this.serializeArray();
-    $.each(a, function() {
-        if (o[this.name] !== undefined) {
-            if (!o[this.name].push) {
-                o[this.name] = [o[this.name]];
-            }
-            o[this.name].push(this.value || '');
-        } else {
-            o[this.name] = this.value || '';
-        }
-    });
-    return o;
-};
+// Client-side templating 
+var icons = ["https://png.icons8.com/ios/30/27ae60/clock-filled.png",
+			"https://png.icons8.com/ios/30/c0392b/heart-health-filled.png",
+			"https://png.icons8.com/ios/30/f1c40f/christmas-star-filled.png",
+			"https://png.icons8.com/ios/30/d35400/exercise-filled.png",
+			"https://png.icons8.com/ios/30/1abc9c/saving-book-filled.png"];
 
-$(function() {
-    $('form').submit(function() {
-        $('#result').text(JSON.stringify($('form').serializeObject()));
-        return false;
-    });
-});
+var contentElement = $('#habitRow');
+var addButtonElement = $('#addHabit');
+var categoryOption = $('#category');
+var titleInput = $('#title');
+var repesInput = $('#repes');
+var counter = 0;
+
+var contentTemplate = Handlebars.compile($('#entry-template').text());
+
+function addContent(){
+	if(categoryOption.val() && titleInput.val() && repesInput.val()){
+		var newHabit = contentTemplate({
+			imgURL: icons[parseInt(categoryOption.val())],
+			title: titleInput.val(),
+			repes: repesInput.val(),
+			counter: counter
+		});
+		
+		contentElement.html(newHabit + contentElement.html());
+		
+	
+		
+
+		//clean up inputs
+		counter++;
+		categoryOption.val('');
+		titleInput.val('');
+		repesInput.val('');
+		
+	
+	}
+}
+addButtonElement.on('click', addContent);
+
+
+
+
+//Change the background of div's based on values:
+
+
+
