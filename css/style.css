@@ -59,7 +59,7 @@ text-transform: uppercase;
 
 }
 .navlinks li:hover{
-font-size: 22px;
+
 border-bottom: 2px solid #f5f2dc;
 
 }
@@ -70,6 +70,7 @@ border-bottom: 2px solid #f5f2dc;
 .section-about {
 background-color: orange;
 text-align: center;
+color: white;
 
 }
 
@@ -79,7 +80,7 @@ text-align: center;
 
 .section-about h2{
   margin: auto;
-  margin-bottom: 50px;
+  margin-bottom: 30px;
   font-size: 0.9em;
   width: 60%;
 
@@ -87,12 +88,16 @@ text-align: center;
 
 }
 
+
+
 .aboutus {
   width: 80%;
   margin: auto;
-  margin-bottom: 60px;
+  margin-bottom: 20px;
+}
 
-
+.aboutus img{
+  filter: invert(100%);
 }
 .aboutus p{
 
@@ -115,11 +120,7 @@ font-weight: bold;
 
 }
 
-.section-about input{
 
-
-
-}
 
 
 
@@ -127,9 +128,10 @@ font-weight: bold;
 /***************** Habit tracker section ********************/
 
 .section-habit {
-background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,.5)), url(images/twofemales.jpg);
+background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,.6)), url(images/4.png);
 background-size: cover;
 background-position: center;
+color:white;
 
 
 }
@@ -194,7 +196,7 @@ html {
 .full-section{
 
 height: 100vh;
-overflow: hidden;
+overflow: auto;
 
 }
 

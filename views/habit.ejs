@@ -1,23 +1,37 @@
-<!- Wrap JavaScript with percent tags->
-<!DOCTYPE html>
+
+<!doctype html>
 <html>
 <head>
-  <link rel="stylesheet" type="text/css" href="../css/normalize.css">
-  <link rel="stylesheet" type="text/css" href="../css/grid.css">
-  <link rel="stylesheet" type="text/css" href="habitstyle2.css">
-  <script src="javascript/animations.js"></script>
-  <title>1health</title>
+<meta charset="utf-8">
+<title>Habit Tracker</title>
+
+<!-- css -->
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/css/bootstrap-select.min.css">
+<link rel="stylesheet" href="habitstyle3.css">
+
+<!-- Javascript -->
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
+
+<script src="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/js/bootstrap-select.min.js"></script>
+<!-- handlebars.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.10/handlebars.js"></script>
+
+
 
 </head>
-<body>
-    <header>
+
+<header>
         <nav>
           <div class="row">
-            <a href="https://secure-inlet-12796.herokuapp.com" class="logo"><h1>1Health</h1></a>
+            <a href="/" class="logo"><h1>1Health</h1></a>
             <ul class="navlinks">
               <a href="#"><li>Login</li></a>
-              <a href="https://secure-inlet-12796.herokuapp.com/habit" id="page"><li>Habit tracker</li></a>
-              <a href="https://secure-inlet-12796.herokuapp.com"><li>Home</li></a>
+              <a href="/habit" id="page"><li>Habit tracker</li></a>
+              <a href="/"><li>Home</li></a>
             </ul>
           </div>
 
@@ -26,53 +40,117 @@
 
 
 
-    </header>
-		<section class="profile">
+</header>
+<body>
+
+<section class="profile">
 			<div class="profileDiv">
 			<div class="profilePic"><img src='images/face.jpg'></div>
 			<div class="profilePic2"><ul><li>Name: <%=userData[1].name%> </li><li>Streak: <%=userData[1].streak%></li><li>Goals Achieved:  <%=userData[1].goals%></li></ul></div>
 			<div class="profilePic3">Points:  <%=userData[1].points%></div>
 		</div>
-		</section>
+</section>
+<div id="today"></div>
 
-		<section class="habit">
-			<div>
-				<ul>
-					<li><input type="text"></input>
-					</li>
-					<li>
-						<select class="selectpicker category show-tick" id="category">
-					<option selected>Category...</option>
-					<option value="efficiency">Efficiency</option>
-					<option value="health">Health</option>
-					<option value="hobbies">Hobbies </option>
-					<option value="sports">Sports</option>
-					<option value="study">Study</option>
-				</select>
-					</li>
-					<li><input type="submit" value="Add Habit" class="butt"></li>
-				</ul>
+<div class="container">
 
-
+	<div id="app">
+	  <div id="insert">
+		  <h2>Getting Started with a New Habit... </h2>
+		  <div class="category">
+			<select class="selectpicker category show-tick" id="category">
+					<option value="" selected>Category...</option>
+					<option value= "0">Efficiency</option>
+					<option value= "1">Health</option>
+					<option value= "2">Hobbies </option>
+					<option value= "3">Sports</option>
+					<option value= "4">Study</option>
+			</select>
 			</div>
-		</section>
-		<!--
-		<section class="habit-tab">
-			<div class= "tabs">
-				<ul>
-					<li><input type="checkbox" name="Monday" value="Monday">Monday</input></li>
-					<li><input type="checkbox" name="Tuesday" value="Tuesday">Tuesday</input></li>
-					<li><input type="checkbox" name="Wednesday" value="Wednesday">Wednesday</input></li>
-					<li><input type="checkbox" name="Thursday" value="Thursday">Thursday</input></li>
-					<li><input type="checkbox" name="Friday" value="Friday">Friday</input></li>
-					<li><input type="checkbox" name="Saturday" value="Saturday">Saturday</input></li>
-					<li><input type="checkbox" name="Sunday" value="Sunday">Sunday</input></li>
-				</ul>
-
-
+		  <div class ="input">
+ 				<input type = "text" id = "title" value="" placeholder="Habit Title">
+				<input type = "number" min="1" value="" id ="repes"  placeholder="Repetitions">
 			</div>
-		</section>
--->
+		  <div class = "button">
+			  <button id= "addHabit">+ ADD</button>
+		  </div>
+
+ 		</div>
+ 		<div id="habitRow"></div>
+	</div>
+</div>
+
+<p></p>
+
+
 
 </body>
-<html>
+
+</html>
+<script id="entry-template" type="text/x-handlebars-template">
+	<div class="habitStatus" id={{counter}}>
+		<div class="icon"><img src="{{imgURL}}"></div>
+		<div class="habitTitle">{{title}}</div>
+		<div class="completed">{{repes}} times</div>
+		<div class="switch">
+			<label class="form-switch">
+  				<input type="checkbox" value="finished">
+  				<i></i>
+			</label>
+		</div>
+	</div>
+</script>
+<script>
+var d = new Date();
+function formatDate(date) {
+  var monthNames = [ "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+  var day = date.getDate();
+  var monthIndex = date.getMonth();
+  var year = date.getFullYear();
+
+  return day + ' ' + monthNames[monthIndex] + ' ' + year;
+}
+document.getElementById("today").innerHTML = formatDate(d);
+
+// Client-side templating
+var icons = ["https://png.icons8.com/ios/30/27ae60/clock-filled.png",
+			"https://png.icons8.com/ios/30/c0392b/heart-health-filled.png",
+			"https://png.icons8.com/ios/30/f1c40f/christmas-star-filled.png",
+			"https://png.icons8.com/ios/30/d35400/exercise-filled.png",
+			"https://png.icons8.com/ios/30/1abc9c/saving-book-filled.png"];
+
+var contentElement = $('#habitRow');
+var addButtonElement = $('#addHabit');
+var categoryOption = $('#category');
+var titleInput = $('#title');
+var repesInput = $('#repes');
+var counter = 0;
+
+var contentTemplate = Handlebars.compile($('#entry-template').text());
+
+function addContent(){
+	if(categoryOption.val() && titleInput.val() && repesInput.val()){
+		var newHabit = contentTemplate({
+			imgURL: icons[parseInt(categoryOption.val())],
+			title: titleInput.val(),
+			repes: repesInput.val(),
+			counter: counter
+		});
+
+		contentElement.html(newHabit + contentElement.html());
+
+
+
+
+		//clean up inputs
+		counter++;
+		categoryOption.val('');
+		titleInput.val('');
+		repesInput.val('');
+
+
+	}
+}
+addButtonElement.on('click', addContent);
+
+</script>

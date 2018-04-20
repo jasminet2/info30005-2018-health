@@ -20,7 +20,7 @@ module.exports = {
 
       habit: function(req, res) {
 
-          res.render('habitnew.ejs', {userData});
+          res.render('habit.ejs', {userData});
 
       },
 
