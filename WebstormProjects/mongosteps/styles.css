@@ -1,0 +1,57 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat');
+h1, h2, form, input {
+    font-family: 'Montserrat', sans-serif;
+}
+
+h1 {
+    text-align: center;
+    color: #333A42;
+    font-size: 30pt;
+
+}
+
+h2 {
+    text-align: left;
+    color: #333A42;
+}
+
+#create_account {
+    border-radius: 10px;
+    width: 600px;
+    padding: 20px;
+    background: white;
+    margin: 0 auto 0 auto;
+    display: block;
+    text-align: left;
+    line-height: 1.5em;
+    color: #333A42;
+}
+
+input {
+    padding: 5px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    width: 100%;
+}
+
+input[type=submit] {
+    background-color: #D7443F;
+    color: white;
+    font-size: 10pt;
+    display: block;
+    margin: 0 0 0 auto;
+    padding: 5px;
+}
+
+img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 30%;
+}
+
+body {
+    background: url("alternative.jpg") no-repeat center fixed;
+    background-size: cover;
+}
+
