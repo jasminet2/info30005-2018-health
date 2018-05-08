@@ -3,6 +3,8 @@ const app = express();
 const router = require('./routes/router.js');
 
 const PORT = process.env.PORT || 3000;
+const bodyParser = require('body-parser');
+var urlencodedParser = bodyParser.urlencoded({ extended: false });
 
 app.use(express.static(__dirname + '/css'));
 app.use(express.static(__dirname + '/public'));
@@ -22,8 +24,12 @@ app.get('/users', router);
 //displays user with specific id using req.params
 app.get('/users/:id', router);
 app.get('/comingsoon', router);
-app.get('/habit', router)
-
+app.get('/habit', router);
+app.get('/login', router);
+app.post('/login', urlencodedParser, router);
+app.get('/signup', router);
+app.post('/signup', urlencodedParser, router);
+app.get('/success', router);
 /*app.listen(3000, function(){
 console.log('Express serving at port 3000');
 });*/

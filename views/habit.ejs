@@ -9,7 +9,7 @@
 
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/css/bootstrap-select.min.css">
-<link rel="stylesheet" href="habitstyle3.css">
+<link rel="stylesheet" href="style.css">
 
 <!-- Javascript -->
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
@@ -24,12 +24,12 @@
 
 </head>
 
-<header>
+<header class="habit-head">
         <nav>
           <div class="row">
-            <a href="/" class="logo"><h1>1Health</h1></a>
+            <a href="/"><img src="images/logo.png" class="logo-habit"></img></a>
             <ul class="navlinks">
-              <a href="#"><li>Login</li></a>
+              <a href="/login"><li>Login</li></a>
               <a href="/habit" id="page"><li>Habit tracker</li></a>
               <a href="/"><li>Home</li></a>
             </ul>
@@ -41,13 +41,13 @@
 
 
 </header>
-<body>
+<body class="habit-body">
 
 <section class="profile">
 			<div class="profileDiv">
 			<div class="profilePic"><img src='images/face.jpg'></div>
-			<div class="profilePic2"><ul><li>Name: <%=userData[1].name%> </li><li>Streak: <%=userData[1].streak%></li><li>Goals Achieved:  <%=userData[1].goals%></li></ul></div>
-			<div class="profilePic3">Points:  <%=userData[1].points%></div>
+			<div class="profilePic2"><ul><li>Name: <%=userinfo.fname%> </li><li>Streak: 10</li><li>Goals Achieved:  12</li></ul></div>
+			<div class="profilePic3">Points:  5</div>
 		</div>
 </section>
 <div id="today"></div>
@@ -68,8 +68,8 @@
 			</select>
 			</div>
 		  <div class ="input">
- 				<input type = "text" id = "title" value="" placeholder="Habit Title">
-				<input type = "number" min="1" value="" id ="repes"  placeholder="Repetitions">
+ 				<input class="habit-input-text" type = "text" id = "title" value="" placeholder="Habit Title">
+				<input class="habit-input-number" type = "number" min="1" value="" id ="repes"  placeholder="Repetitions">
 			</div>
 		  <div class = "button">
 			  <button id= "addHabit">+ ADD</button>
@@ -94,7 +94,7 @@
 		<div class="completed">{{repes}} times</div>
 		<div class="switch">
 			<label class="form-switch">
-  				<input type="checkbox" value="finished">
+  				<input class="habit-input-checkbox" type="checkbox" value="finished">
   				<i></i>
 			</label>
 		</div>

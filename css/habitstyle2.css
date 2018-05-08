@@ -1,0 +1,412 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat');
+
+
+
+.profile {
+
+background-color: orange;
+height:20vh;
+margin:auto;
+}
+.profileDiv{
+
+width: 80%;
+margin:auto;
+
+}
+.profilePic {
+width: 15%;
+float: left;
+display: block;
+
+}
+
+.profilePic img{
+padding-top: 2vh;
+width: 15vh;
+border-radius: 50%;
+
+}
+.profilePic2 {
+padding-top: 4vh;
+width: 70%;
+float: left;
+
+
+}
+.profilePic2 ul{
+list-style: none;
+
+
+}
+.profilePic3 {
+padding-top: 4vh;
+width: 15%;
+float: right;
+
+
+}
+
+.habit {
+
+background-color: black;
+height:30vh;
+margin:auto;
+
+}
+
+.habit div{
+
+width: 80%;
+margin:auto;
+
+
+}
+.habit ul{
+
+list-style: none;
+
+}
+
+.habit li{
+float: left;
+margin-top: 10vh;
+margin-right: 40px;
+
+}
+.habit li:last-child{
+float: right;
+margin-right: 0;
+
+}
+
+.habit input[type=text] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    border-radius: 10px;
+}
+
+select {
+
+
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+  border-radius: 10px;
+
+
+}
+.habit-tab{
+  background-color: #9dc183;
+  height:30vh;
+  width: 80%;
+  margin:auto;
+}
+.tabs div{
+  width: 80%;
+}
+.tabs ul{
+  margin: 0;
+  list-style: none;
+}
+.tabs li{
+  float: left;
+  margin-right: 10px;
+
+}
+
+/****** NAVBAR SECTION *******/
+
+nav {
+
+  padding-top: 20px;
+
+}
+
+#page {
+font-weight: bold;
+}
+
+
+.logo{
+  float: left;
+}
+
+
+
+nav li{
+  float: right;
+  display: inline-block;
+  list-style: none;
+  margin-left: 40px;
+}
+
+.navlinks li{
+padding-top: 15px;
+font-size: 20px;
+text-transform: uppercase;
+
+
+}
+.navlinks li:hover{
+font-size: 22px;
+border-bottom: 2px solid #f5f2dc;
+
+}
+
+
+/****** ABOUT US SECTION *******/
+
+.section-about {
+background-color: orange;
+text-align: center;
+
+}
+
+.section-about h1{
+  margin-bottom: 15px;
+}
+
+.section-about h2{
+  margin: auto;
+  margin-bottom: 50px;
+  font-size: 0.9em;
+  width: 60%;
+
+
+
+}
+
+.aboutus {
+  width: 80%;
+  margin: auto;
+  margin-bottom: 60px;
+
+
+}
+.aboutus p{
+
+width: 70%;
+text-align: center;
+margin: auto;
+font-size: 0.7em;
+font-weight: bold;
+
+}
+
+
+.aboutus li{
+  display: inline-block;
+  float: left;
+  width: 33.33%;
+  text-align: center;
+  list-style: none;
+
+
+}
+
+.section-about input{
+
+
+
+}
+
+
+
+
+/***************** Habit tracker section ********************/
+
+.section-habit {
+background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,.5)), url(images/twofemales.jpg);
+background-size: cover;
+background-position: center;
+
+
+}
+
+.habit-div {
+
+  float: left;
+  width: 50%;
+  margin-top: 10%;
+
+}
+
+
+
+.habit-div li{
+
+font-size: 1em;
+margin-bottom: 20px;
+list-style: none;
+text-align: center;
+
+}
+
+.habit-div div{
+
+text-align: center;
+
+}
+.habit-div ul{
+margin-left: 40px;
+margin-bottom: 40px;
+
+
+}
+
+.habit-div img{
+
+  height: 70%;
+  width: 70%;
+  filter: blur(2px);
+
+}
+
+
+
+
+
+/****** ENTIRE WEBSITE SECTION *******/
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+  background-color: orange;
+  color: #deeaee;
+  font-family: 'Montserrat';
+  font-weight: 300;
+  font-size: 25px;
+  text-rendering: optimizeLegibility;
+  overflow-x: hidden;
+}
+
+.full-section{
+
+height: 100vh;
+overflow: hidden;
+
+}
+
+
+.row {
+
+max-width: 80%;
+margin: 0 auto;
+
+}
+
+a {
+color: inherit;
+text-decoration: none;
+}
+
+
+.section-headers{
+
+font-size: 3.5em;
+text-align: center;
+padding: 30px 0px 20px 0px;
+
+}
+
+header {
+
+    background-image: linear-gradient(rgba(0,0,0,1), rgba(0,0,0,.90)), url(images/running.jpg);
+    background-size: cover;
+    background-position: center;
+    height: 10vh;
+    overflow: auto;
+
+
+}
+
+h1 {
+
+  margin: 0;
+
+}
+
+p {
+
+  font-size: 15px;
+
+}
+
+.butt {
+
+display: inline-block;
+padding: 10px 30px;
+font-family: 'Montserrat';
+color: white;
+font-weight: 300px;
+background-color: rgba(0,0,0,.5);
+border-radius: 50px;
+font-size: 1em;
+
+}
+
+
+.butt:hover {
+
+display: inline-block;
+padding: 10px 30px;
+font-family: 'Montserrat';
+color: white;
+font-weight: 300px;
+background-color: rgba(0,0,0,.9);
+border-radius: 50px;
+font-size: 1em;
+
+}
+
+.butt2{
+
+display: inline-block;
+padding: 20px 60px;
+font-family: 'Montserrat';
+color: white;
+font-weight: 300px;
+font-size: 0.8em;
+background-color: rgba(0,0,0, 0);
+border-radius: 50px;
+
+}
+
+.butt2:hover{
+
+display: inline-block;
+padding: 20px 60px;
+font-family: 'Montserrat';
+color: white;
+font-weight: 300px;
+font-size: 0.8em;
+background-color: rgba(0,0,0, 0.7);
+border-radius: 50px;
+
+}
+
+
+
+
+.center {
+
+text-align: center;
+
+}
+
+
+
+.clearfix {zoom: 1;}
+.clearfix:after {
+    content: '.';
+    clear: both;
+    display: block;
+    height: 0;
+    visibility: hidden;
+}
