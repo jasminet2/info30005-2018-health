@@ -78,7 +78,7 @@ module.exports = {
 
           } else {
 
-            res.send("Username or password is incorrect");
+            res.render('login_fail.ejs');
 
           }
 

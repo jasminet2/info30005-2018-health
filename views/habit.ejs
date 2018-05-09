@@ -14,7 +14,6 @@
 <!-- Javascript -->
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 
-
 <script src="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/js/bootstrap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/js/bootstrap-select.min.js"></script>
 <!-- handlebars.js -->
@@ -46,7 +45,7 @@
 <section class="profile">
 			<div class="profileDiv">
 			<div class="profilePic"><img src='images/face.jpg'></div>
-			<div class="profilePic2"><ul><li>Name: <%=userinfo.fname%> </li><li>Streak: 10</li><li>Goals Achieved:  12</li></ul></div>
+			<div class="profilePic2"><ul><li>Name: <%=userinfo.fname%> <%=userinfo.lname%></li><li>Streak: 10</li><li>Goals Achieved:  12</li></ul></div>
 			<div class="profilePic3">Points:  5</div>
 		</div>
 </section>
@@ -66,17 +65,25 @@
 					<option value= "3">Sports</option>
 					<option value= "4">Study</option>
 			</select>
+      <select class="selectpicker category show-tick" id="timeframe">
+          <option value= "0" selected>Daily</option>
+          <option value= "1">Weekly</option>
+          <option value= "2">Monthly</option>
+      </select>
 			</div>
 		  <div class ="input">
  				<input class="habit-input-text" type = "text" id = "title" value="" placeholder="Habit Title">
-				<input class="habit-input-number" type = "number" min="1" value="" id ="repes"  placeholder="Repetitions">
+
+				<!--<input class="habit-input-number" type = "number" min="1" value="" id ="repes"  placeholder="Repetitions">-->
 			</div>
 		  <div class = "button">
 			  <button id= "addHabit">+ ADD</button>
 		  </div>
 
  		</div>
- 		<div id="habitRow"></div>
+ 		<div id="habit-daily"></div></div>
+    <div id="habit-weekly"></div>
+    <div id="habit-monthly"></div>
 	</div>
 </div>
 
@@ -88,19 +95,51 @@
 
 </html>
 <script id="entry-template" type="text/x-handlebars-template">
-	<div class="habitStatus" id={{counter}}>
+	<div class="habitStatus" data-id="{{data}}" data-str="{{streak}}">
 		<div class="icon"><img src="{{imgURL}}"></div>
 		<div class="habitTitle">{{title}}</div>
-		<div class="completed">{{repes}} times</div>
+		<div class="completed">{{streak}} days</div>
 		<div class="switch">
-			<label class="form-switch">
-  				<input class="habit-input-checkbox" type="checkbox" value="finished">
-  				<i></i>
-			</label>
+      <input type="button" class="habit-button" data-id="{{data}}" value="remove" id="remove"></input>
+			<input type="button" class="habit-button" data-id="{{data}}" value="&#10004;" id="tick"></input>
 		</div>
 	</div>
 </script>
+
+
+
 <script>
+//This function runs when page is loaded.
+//Populates existing user data from database.
+$(function(){
+
+    $.ajax( { url: "https://api.mlab.com/api/1/databases/user/collections/habit?q={'userID': '<%=userinfo.userName%>'}&apiKey=LuB39tFnIwmJZahnfmYhmq-lThiB_weW",
+		  data: JSON.stringify( {
+        "category": 1,
+        "title": "string",
+        "streak": 1,
+        "timeFrame": 1
+      } ),
+		  type: "GET",
+		  contentType: "application/json",
+      success: function(data){
+        //addContent(data[0].category, data[0].title, data[0].repes);
+        var i = 0;
+        for (var habit in data) {
+          addContent(data[i].category, data[i].title, data[i].timeFrame, data[i].streak, data[i]._id.$oid);
+          i++;
+        }
+      },
+      error: function(xhr, status, err){
+
+        console.log(err);
+
+      }
+
+    } );
+
+});
+
 var d = new Date();
 function formatDate(date) {
   var monthNames = [ "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
@@ -110,6 +149,7 @@ function formatDate(date) {
 
   return day + ' ' + monthNames[monthIndex] + ' ' + year;
 }
+
 document.getElementById("today").innerHTML = formatDate(d);
 
 // Client-side templating
@@ -119,38 +159,116 @@ var icons = ["https://png.icons8.com/ios/30/27ae60/clock-filled.png",
 			"https://png.icons8.com/ios/30/d35400/exercise-filled.png",
 			"https://png.icons8.com/ios/30/1abc9c/saving-book-filled.png"];
 
-var contentElement = $('#habitRow');
-var addButtonElement = $('#addHabit');
-var categoryOption = $('#category');
-var titleInput = $('#title');
-var repesInput = $('#repes');
-var counter = 0;
 
-var contentTemplate = Handlebars.compile($('#entry-template').text());
+function addContent(category, titlename, timeFrame, streak, dataid){
 
-function addContent(){
-	if(categoryOption.val() && titleInput.val() && repesInput.val()){
+  var contentTemplate = Handlebars.compile($('#entry-template').text());
+  //use switch statment to adjust habit row
+  var contentElement;
+  switch (timeFrame) {
+	case "0":
+		contentElement = $('#habit-daily');
+		break;
+	case "1":
+		contentElement = $('#habit-weekly');
+		break;
+	case "2":
+		contentElement = $('#habit-monthly');
+		break;
+	default:
+		contentElement = $('#habit-daily');
+  }
+
+	if(category && titlename && timeFrame){
 		var newHabit = contentTemplate({
-			imgURL: icons[parseInt(categoryOption.val())],
-			title: titleInput.val(),
-			repes: repesInput.val(),
-			counter: counter
+			imgURL: icons[parseInt(category)],
+			title: titlename,
+			streak: streak,
+      data: dataid
 		});
 
 		contentElement.html(newHabit + contentElement.html());
 
 
-
-
-		//clean up inputs
-		counter++;
-		categoryOption.val('');
-		titleInput.val('');
-		repesInput.val('');
-
-
 	}
 }
-addButtonElement.on('click', addContent);
+
+$(function(){
+
+  $('#addHabit').on('click', function(){
+
+
+    $.ajax( { url: "https://api.mlab.com/api/1/databases/user/collections/habit?&apiKey=LuB39tFnIwmJZahnfmYhmq-lThiB_weW",
+		  data: JSON.stringify( {
+        "category": $('#category').val(),
+        "title": $('#title').val(),
+        "timeFrame": $('#timeframe').val(),
+        "streak": 0,
+        "userID": '<%=userinfo.userName%>'
+
+      }),
+		  type: "POST",
+		  contentType: "application/json",
+      success: function(data){
+        //clear inputs
+        addContent($('#category').val(), $('#title').val(), $('#timeframe').val(), 0, data._id.$oid);
+        $('#title').val('');
+        console.log(data._id.$oid)
+
+      },
+      error: function(xhr, status, err){
+        console.log(err);
+      }
+
+    } );
+
+  });
+
+  $('body').on('click', '#tick' , function(e){
+      e.preventDefault();
+      var dataid = $(this).data('id');
+      $.ajax( { url: "https://api.mlab.com/api/1/databases/user/collections/habit?q={'_id': {$oid: '"+dataid+"'}}&apiKey=LuB39tFnIwmJZahnfmYhmq-lThiB_weW",
+  		  data: JSON.stringify( {
+          "$inc": {"streak": 1}
+        }),
+  		  type: "PUT",
+  		  contentType: "application/json",
+        success: function(data){
+
+          var currentStreak = $('.habitStatus[data-id='+dataid+']').data('str');
+          $('.habitStatus[data-id='+dataid+']').find('.completed').text(currentStreak+1+" days");
+          location.reload();
+        },
+        error: function(xhr, status, err){
+          console.log(err);
+        }
+
+      } );
+
+  });
+
+  $('body').on('click', '#remove' , function(e){
+      e.preventDefault();
+      var dataid = $(this).data('id');
+      $.ajax( { url: "https://api.mlab.com/api/1/databases/user/collections/habit?q={'_id': {$oid: '"+dataid+"'}}&apiKey=LuB39tFnIwmJZahnfmYhmq-lThiB_weW",
+        data: JSON.stringify( {
+        "$set": {"userID": ''}
+        }),
+        type: "PUT",
+        contentType: "application/json",
+        success: function(data){
+          location.reload();
+        },
+        error: function(xhr, status, err){
+          console.log(err);
+        }
+
+      } );
+
+  });
+
+});
+
+
 
 </script>
