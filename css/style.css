@@ -1,7 +1,6 @@
-@import url('https://fonts.googleapis.com/css?family=Montserrat');
 @charset "utf-8";
 @import url('https://fonts.googleapis.com/css?family=Lato|Playfair+Display');
-@import url('https://fonts.googleapis.com/css?family=Montserrat');
+@import url('https://fonts.googleapis.com/css?family=Montserrat:200,300,400');
 @import url('https://fonts.googleapis.com/css?family=Courgette|Pacifico');
 
 
@@ -22,6 +21,7 @@ text-align: center;
   margin-bottom: 20px;
 
 }
+
 #welcome input{
 
   margin: 20px 15px 20px 15px;;
@@ -42,6 +42,7 @@ nav {
 }
 
 .logo{
+
   height: 75px;
   width: auto;
   float: left;
@@ -50,6 +51,7 @@ nav {
 }
 
 .logo-habit{
+
   height: 75px;
   width: auto;
   float: left;
@@ -58,21 +60,25 @@ nav {
 }
 
 #page {
+
 font-weight: bold;
+
 }
 
 nav li{
+
   float: right;
   display: inline-block;
   list-style: none;
   margin-left: 40px;
+
 }
 
 .navlinks li{
+
 padding-top: 15px;
 font-size: 20px;
 text-transform: uppercase;
-
 
 }
 .navlinks li:hover{
@@ -96,6 +102,7 @@ border-bottom: 2px solid #f5f2dc;
 /****** ABOUT US SECTION *******/
 
 .section-about {
+
 background-color: #D7443F;
 text-align: center;
 color: white;
@@ -103,45 +110,53 @@ color: white;
 }
 
 .section-about h1{
+
   margin-bottom: 15px;
 }
 
 .section-about h2{
+
   margin: auto;
   margin-bottom: 30px;
   font-size: 0.9em;
   width: 60%;
+
 }
 
 
 
 .aboutus {
+
   width: 80%;
   margin: auto;
   margin-bottom: 20px;
+
 }
 
 .aboutus img{
+
   filter: invert(100%);
+
 }
+
 .aboutus p{
 
 width: 70%;
 text-align: center;
 margin: auto;
 font-size: 0.7em;
-font-weight: bold;
+font-weight: 200;
 
 }
 
 
 .aboutus li{
+
   display: inline-block;
   float: left;
   width: 33.33%;
   text-align: center;
   list-style: none;
-
 
 }
 
@@ -153,6 +168,7 @@ font-weight: bold;
 /***************** Habit tracker section ********************/
 
 .section-habit {
+
 background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,.6)), url(images/4.png);
 background-size: cover;
 background-position: center;
@@ -169,8 +185,6 @@ color:white;
 
 }
 
-
-
 .habit-div li{
 
 font-size: 1em;
@@ -185,10 +199,11 @@ text-align: center;
 text-align: center;
 
 }
+
 .habit-div ul{
+
 margin-left: 40px;
 margin-bottom: 40px;
-
 
 }
 
@@ -196,24 +211,28 @@ margin-bottom: 40px;
 
   height: 70%;
   width: 70%;
+  filter: invert(100%);
 
 }
 
 
 /****** ENTIRE WEBSITE SECTION *******/
 * {
+
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
 html {
+
   background: #0e1111;
   color: #deeaee;
   font-family: 'Montserrat';
   font-weight: 300;
   font-size: 25px;
   text-rendering: optimizeLegibility;
+
 }
 
 .full-section{
@@ -223,7 +242,6 @@ overflow: auto;
 
 }
 
-
 .row {
 
 max-width: 80%;
@@ -232,8 +250,10 @@ margin: 0 auto;
 }
 
 a {
+
 color: inherit;
 text-decoration: none;
+
 }
 
 
@@ -252,7 +272,6 @@ header {
     background-position: center;
     height: 100vh;
     overflow: auto;
-
 
 }
 
@@ -321,16 +340,11 @@ border-radius: 50px;
 
 }
 
-
-
-
 .center {
 
 text-align: center;
 
 }
-
-
 
 .clearfix {zoom: 1;}
 .clearfix:after {
@@ -341,33 +355,42 @@ text-align: center;
     visibility: hidden;
 }
 
-
 /**               LOGIN PAGE                **/
 
-
 input[type="submit"]{
+
 	margin-top: 5%;
 
-
 }
+
 .form {
 
   margin: auto;
   text-align: center;
   width: 30%;
+
 }
+
 .form p{
+
   font-size: 0.7em;
+
 }
+
 .form a{
+
   color: #D7443F;
+
 }
 
 .form h1{
+
   margin-bottom: 10%;
+
 }
 
 .input-text, .input-email, .input-password{
+
 	background: rgba(0,0,0, 0.5);
 	border: 0;
 	border-bottom: 1px solid #333;
@@ -379,14 +402,19 @@ input[type="submit"]{
   width: 100%;
   text-align: center;
   border-radius: 10px;
+
 }
 
 #signup{
+
   margin-top: 20vh;
+
 }
 
 #login {
+
   margin-top: 30vh;
+
 }
 
 .error{
@@ -406,29 +434,34 @@ border-radius: 10px;
   width: 30%;
   margin-top: 30vh;
 
-
 }
 
 .success h1{
+
   color: #4CAF50;
   font-size: 3em;
+
 }
+
 .success p{
+
   font-size: 0.8em;
   margin-bottom: 7%;
+
 }
-
-
 
 /*             HABIT                  */
 
 /******* PROFILE DISPLAY *****/
 
 .profile {
+
 background-color: #d7443f;
 height:20vh;
 margin:auto;
+
 }
+
 .profileDiv{
 
 width: 80%;
@@ -438,7 +471,9 @@ font-family: 'Courgette';
 font-size: 1.5em;
 
 }
+
 .profilePic {
+
 width: 15%;
 float: left;
 display: block;
@@ -446,29 +481,32 @@ display: block;
 }
 
 .profilePic img{
+
 padding-top: 2vh;
 width: 15vh;
 border-radius: 50%;
 
 }
+
 .profilePic2 {
+
 padding-top: 4vh;
 width: 70%;
 float: left;
 
-
 }
-.profilePic2 ul{
-list-style: none;
 
+.profilePic2 ul{
+
+list-style: none;
 
 }
 
 .profilePic3 {
+
 padding-top: 4vh;
 width: 15%;
 float: right;
-
 
 }
 
@@ -480,6 +518,7 @@ float: right;
 	font-weight: 300;
   overflow-x: hidden;
 }
+
 #today{
 	padding-right: 50px;
 	width:auto;
@@ -493,27 +532,36 @@ float: right;
 	display: inline-block;
   margin-top: 20px;
   color: white;
+
 }
 
 .category, .input{
+
 	margin-left:50px;
+
 }
 
 .bootstrap-select{
+
 	max-width: 200px;
+
 }
 
 .bootstrap-select .btn{
+
 	margin-bottom: 10px;
 	font-size: 1.2em;
 
 }
 
 .category, .input, .button, .icon, .switch, .completed, .habitTitle{
+
     display: inline;
+
 }
 
 #insert{
+
 	border: 1px solid #485058;
 	background:#333A42;
 	border-radius:0 20px 0 20px;
@@ -522,12 +570,14 @@ float: right;
 
 }
 
-
 #insert h2{
+
 	margin-left: 20px;
+
 }
 
 .habit-input-text{
+
 	background: rgba(0,0,0, 0.5);
 	margin-left: 5px;
 	border: 0;
@@ -549,11 +599,12 @@ color: white;
 }
 
 .habit-input-number{
+
 	width: 130px;
 }
 
-
 #addHabit{
+
 	padding: 8px;
 	border: 0;
 	border-radius: 5px;
@@ -561,6 +612,7 @@ color: white;
 	background: #D7443F;
 	color: white;
 	font-size: 1.2em;
+
 }
 
 
@@ -584,11 +636,9 @@ color: white;
 
 #habit-daily{
 
-
 }
 
 #habit-weekly{
-
 
 }
 
@@ -598,12 +648,14 @@ color: white;
 }
 
 .icon{
+
 	margin-left: 20px;
 	margin-bottom: auto;
 
 }
 
 .habitStatus{
+
 	padding-top: 5px;
 	border: transparent;
 	margin-top: 5px;
@@ -613,27 +665,29 @@ color: white;
 
 }
 
-
-
 .habitTitle{
 	margin-left: 25px;
 	font-size: 1.6em;
 	color: white;
+
 }
+
 .completed{
+
 	font-size: 1.2em;
 	margin-left: 40px;
   color: white;
 
 }
 
-
 #remove:hover{
 
   background-color: rgba(215,68,63,0.8);
+
 }
 
 .habit-button {
+
   display: inline-block;
   padding: 5px 10px;
   font-family: 'Montserrat';
@@ -644,25 +698,33 @@ color: white;
   font-size: 1em;
   margin-right: 10px;
   border-style: hidden;
+
 }
 
 #tick:hover {
+
   background-color: rgba(76,175,80, 0.8);
+
 }
 
 .switch{
+
 	float: right;
+
 }
 
 /*The switch*/
 
 .form-switch {
+
   display: inline-block;
   cursor: pointer;
   -webkit-tap-highlight-color: transparent;
+
 }
 
 .form-switch i {
+
   position: relative;
   display: inline-block;
   margin-right: .5rem;
@@ -672,9 +734,11 @@ color: white;
   border-radius: 23px;
   vertical-align: text-bottom;
   transition: all 0.3s linear;
+
 }
 
 .form-switch i::before {
+
   content: "";
   position: absolute;
   left: 0;
@@ -684,9 +748,11 @@ color: white;
   border-radius: 11px;
   transform: translate3d(2px, 2px, 0) scale3d(1, 1, 1);
   transition: all 0.25s linear;
+
 }
 
 .form-switch i::after {
+
   content: "";
   position: absolute;
   left: 0;
@@ -697,11 +763,14 @@ color: white;
   box-shadow: 0 2px 2px rgba(0, 0, 0, 0.24);
   transform: translate3d(2px, 2px, 0);
   transition: all 0.2s ease-in-out;
+
 }
 
 .form-switch:active i::after {
+
   width: 28px;
   transform: translate3d(2px, 2px, 0);
+
 }
 
 .form-switch:active input:checked + i::after { transform: translate3d(16px, 2px, 0); }
