@@ -3,12 +3,12 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>Habit Tracker</title>
+<title>Sign up</title>
 
 <!-- css -->
 
 <link rel="stylesheet" href="style.css">
-
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 
 </head>
 
@@ -26,12 +26,14 @@
         <div class="form">
         <form method="POST" id="signup">
         <h1>Create account</h1>
-        <input class="input-text" type="text" name="fname" placeholder="First Name" required></input>
-        <input class="input-text" type="text" name="lname" placeholder="Last Name" required></input>
-        <input class="input-email" type="email" name="email" placeholder="Email" required></input>
-        <input class="input-text" type="text" name="userName" placeholder="Username" required></input>
-        <input class="input-password" type="password" name="password" placeholder="Password" required></input>
-        <input type="submit" class="butt" value="Sign up"></input>
+        <div id="error"></div>
+        <input class="input-text" id="fname" type="text" name="fname" placeholder="First Name" required></input>
+        <input class="input-text" id="lname" type="text" name="lname" placeholder="Last Name" required></input>
+        <input class="input-email" id="email" type="email" name="email" placeholder="Email" required></input>
+        <input class="input-text" id="user" type="text" name="userName" placeholder="Username" required></input>
+        <input class="input-password" id="passw" type="password" name="password" placeholder="Password" required></input>
+        <p>Already have an account? Login <a href='/login'>here</a>.</p>
+        <input id="sign-btn" type="button" class="butt" value="Sign up"></input>
         </form>
       </div>
 </header>
@@ -43,3 +45,105 @@
 
 
 </html>
+<script>
+
+$(function(){
+
+
+  $('#sign-btn').on('click', function(e){
+    var username = $('#user').val();
+    $.ajax( {
+      url: "/api/authUser",
+      type: "POST",
+      data: {
+        userName: username
+      },
+      success: function(data){
+        if(required() && validateEmail($('#email').val())){
+          if(data){
+              checkEmail();
+          } else {
+
+            $('#error').html('<h2 class="error">Username already exists</h2>');
+          }
+       }
+      },
+      error: function(xhr, status, err){
+
+
+      }
+
+    });
+
+
+  });
+
+
+  function required(){
+
+    if($('#fname').val() && $('#lname').val() && $('#user').val() && $('#email').val() && $('#passw').val()){
+        return true;
+    } else {
+      $('#error').html('<h2 class="error">All fields are required</h2>');
+      return false;
+    }
+  }
+
+  function validateEmail(email) {
+      var emailReg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,10})?$/;
+      if(!emailReg.test(email)){
+        $('#error').html('<h2 class="error">Please enter a valid email</h2>');
+        return false;
+
+      } else {
+
+
+        return true;
+      }
+  }
+
+
+
+
+function checkEmail() {
+
+  var Email = $('#email').val();
+  $.ajax( {
+    url: "/api/authEmail",
+    type: "POST",
+    data: {
+      email: Email
+    },
+    success: function(data){
+      if(data){
+
+        $('#signup').submit();
+
+      } else {
+
+        $('#error').html('<h2 class="error">Email already exists</h2>');
+
+      }
+    },
+    error: function(xhr, status, err){
+
+
+    }
+
+  });
+
+
+
+
+}
+
+
+
+
+
+
+
+
+});
+
+</script>

@@ -11,8 +11,13 @@ router.route('/habit').get(controller.habit);
 router.route('/signup').get(controller.signStart);
 router.route('/login').get(controller.login);
 router.route('/signup').post(controller.signup);
-router.route('/login').post(controller.authenticate);
-router.route('/success').get(controller.success);
+router.route('/login').post(controller.loginUser);
 
+router.route('/logout').get(controller.logout);
+
+router.route('/success').get(controller.success);
+router.route('/api/authLogin').post(controller.authenticate);
+router.route('/api/authUser').post(controller.authUser);
+router.route('/api/authEmail').post(controller.authEmail);
 
 module.exports = router;

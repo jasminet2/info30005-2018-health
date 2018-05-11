@@ -3,7 +3,7 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>Habit Tracker</title>
+<title>Login</title>
 
 <!-- css -->
 
@@ -18,7 +18,7 @@
           <div class="row">
             <a href="/"><img src="images/logo.png" class="logo"></img></a>
             <ul class="navlinks">
-              <a href="/login"><li>Login</li></a>
+              <a href="/login"><li class="login">Login</li></a>
               <a href="/habit" id="page"><li>Habit tracker</li></a>
               <a href="/"><li>Home</li></a>
             </ul>
@@ -27,12 +27,14 @@
         <div class="form">
         <form method="POST" id="login">
         <h1>Login</h1>
+        <div id="error"></div>
         <input class="input-text" id="user" type="text" name="userName" placeholder="Username"></input>
         <input class="input-password" id="pass" type="password" name="password" placeholder="Password"></input>
         <p>Don't have an account? Create one for free <a href='/signup'>here</a>.</p>
-        <input type="submit" class="butt" value="Login"></input>
+        <input type="submit" value="Login" id="login-btn" class="butt"></input>
+
         </form>
-        <!-- <button id="test" class="butt">TESTER</button> -->
+
       </div>
 </header>
 <body>
@@ -44,30 +46,33 @@
 
 </html>
 
+
 <script>
 $(function(){
+  
 
-  $('#test').on('click', function(){
+  $('#login-btn').on('click', function(e){
 
     var username = $('#user').val();
-    var password = $('#pass').val();
-
-    $.ajax( { url: "https://api.mlab.com/api/1/databases/user/collections/my-coll?q={'userName': '"+username+"'}&apiKey=LuB39tFnIwmJZahnfmYhmq-lThiB_weW",
-		  data: JSON.stringify( {
-        "userName": username,
-        "password": password
-      } ),
-		  type: "GET",
-		  contentType: "application/json",
+    var passw = $('#pass').val();
+    e.preventDefault();
+    $.ajax( {
+      url: "/api/authLogin",
+      type: "POST",
+      data: {
+        userName: username,
+        password: passw
+      },
       success: function(data){
-
-        alert(data[0].userName);
-
-
+        if(data==true){
+          $('#login').submit();
+        } else {
+          //var errorTemplate = Handlebars.compile($('#error-template').text());
+          $('#error').html('<h2 class="error">Username or password is incorrect</h2>')
+        }
       },
       error: function(xhr, status, err){
 
-        console.log(err)
 
       }
 
@@ -77,8 +82,5 @@ $(function(){
 
 
 });
-
-
-
 
 </script>

@@ -564,29 +564,36 @@ color: white;
 }
 
 
-#habit-daily{
+
+#habit-container{
 	margin-top: 2.5%;
   padding: 20px 20px 20px 20px;
   background-color: #333A42;
   border-radius:0 20px 0 20px;
+  color: white;
+
+}
+
+#habit-container h1{
+	background-color: rgba(0,0,0, 0.9);
+
+  padding-left: 10px;
+  border-radius:5px;
+
+}
+
+#habit-daily{
 
 
 }
+
 #habit-weekly{
-  margin-top: 2.5%;
-	background-color: #333A40;
-  padding: 20px 20px 20px 20px;
-  border-radius:0 20px 0 20px;
 
 
 }
 
 #habit-monthly{
 
-	background-color: #333A42;
-  padding: 20px 20px 20px 20px;
-  margin-top: 2.5%;
-  border-radius:0 20px 0 20px;
 
 }
 
@@ -609,7 +616,7 @@ color: white;
 
 
 .habitTitle{
-	margin-left: 50px;
+	margin-left: 25px;
 	font-size: 1.6em;
 	color: white;
 }

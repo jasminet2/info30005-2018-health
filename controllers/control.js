@@ -6,8 +6,7 @@ module.exports = {
 
 
       homepage: function(req, res) {
-
-          res.render('index.ejs', {userData});
+        res.render('index.ejs');
 
       },
 
@@ -19,7 +18,17 @@ module.exports = {
 
       habit: function(req, res) {
 
-          res.redirect('/login');
+          if(!req.session.user){
+
+            res.redirect('/login');
+
+          } else {
+            var userinfo = req.session.user;
+            res.render('habit.ejs', {userinfo});
+
+          }
+
+
 
       },
 
@@ -66,19 +75,34 @@ module.exports = {
 
       },
       login: function(req, res){
+        if(!req.session.user){
           res.render('login.ejs');
+        }else{
+          res.redirect('/habit');
+        }
+      },
+      logout: function(req, res){
+          req.session.destroy();
+          res.redirect("./login");
       },
       authenticate: function(req, res){
-
         Users.findOne({userName: req.body.userName, password: req.body.password},function(err, userinfo){
-
           if(userinfo && !err){
             //this is what it does after
-            res.render('habit.ejs', {userinfo});
+            res.send(true);
 
           } else {
-
-            res.render('login_fail.ejs');
+            res.send(false);
+          }
+        });
+      },
+      loginUser: function(req, res){
+        Users.findOne({userName: req.body.userName, password: req.body.password},function(err, userinfo){
+          if(userinfo && !err){
+            //this is what it does after
+            req.session.user = userinfo;
+            res.redirect('/habit');
+          } else {
 
           }
 
@@ -104,7 +128,8 @@ module.exports = {
 
             if(!err){
               //this is what it does after
-              res.redirect('/login');
+              res.render('signLanding.ejs');
+
             } else {
 
               res.sendStatus(404);
@@ -113,6 +138,31 @@ module.exports = {
 
           });
 
+
+
+      },
+
+      authUser: function(req, res){
+        Users.findOne({userName: req.body.userName},function(err, username){
+          if(!username && !err){
+              res.send(true);
+          } else {
+            res.send(false);
+          }
+
+        });
+
+
+      },
+      authEmail: function(req, res){
+        Users.findOne({email: req.body.email},function(err, email){
+          if(!email && !err){
+              res.send(true);
+          } else {
+            res.send(false);
+          }
+
+        });
 
 
       }
