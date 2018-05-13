@@ -515,6 +515,10 @@ border-radius: 5px;
 
 /******* PROFILE DISPLAY *****/
 
+.habit-body {
+    background-image: linear-gradient(rgba(0,0,0,1), rgba(0,0,0,0.98)), url(images/habit.jpg);
+}
+
 .profile {
 
 height:150px;
