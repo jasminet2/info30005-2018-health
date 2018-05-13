@@ -38,7 +38,12 @@
       </div>
 </header>
 <body>
-
+  <div id="myModal" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <p class="errormsg"></p>
+    </div>
+  </div>
 
 </body>
 
@@ -51,6 +56,7 @@ $(function(){
 
 
   $('#sign-btn').on('click', function(e){
+    if(required() && validateEmail($('#email').val())){
     var username = $('#user').val();
     $.ajax( {
       url: "/api/authUser",
@@ -59,22 +65,23 @@ $(function(){
         userName: username
       },
       success: function(data){
-        if(required() && validateEmail($('#email').val())){
+
           if(data){
               checkEmail();
           } else {
 
-            $('#error').html('<h2 class="error">Username already exists</h2>');
+            $('.errormsg').html('Username already exists');
+            $('.modal').css('display', 'block');
           }
-       }
+       //bracket removal
       },
       error: function(xhr, status, err){
 
 
       }
 
-    });
-
+    });//ajax
+  }
 
   });
 
@@ -104,7 +111,6 @@ $(function(){
 
 
 
-
 function checkEmail() {
 
   var Email = $('#email').val();
@@ -120,25 +126,24 @@ function checkEmail() {
         $('#signup').submit();
 
       } else {
-
-        $('#error').html('<h2 class="error">Email already exists</h2>');
+        $('.errormsg').html('Email already exists');
+        $('.modal').css('display', 'block');
 
       }
     },
     error: function(xhr, status, err){
 
-
     }
-
   });
-
-
-
 
 }
 
-
-
+$('.close').on('click', function(){
+  $('.modal').css('display', 'none');
+});
+$(window).on('click', function(){
+  $('.modal').css('display', 'none');
+});
 
 
 

@@ -8,6 +8,7 @@ const bodyParser = require('body-parser');
 var urlencodedParser = bodyParser.urlencoded({ extended: false });
 
 app.use(express.static(__dirname + '/css'));
+//add js folder
 app.use(express.static(__dirname + '/public'));
 
 var userData = require('./models/db.js');
@@ -15,7 +16,7 @@ var userData = require('./models/db.js');
 app.set('view engine', 'ejs')
 // use res.render to load up an ejs view file
 
-app.use(session({cookie: {maxAge: 1800000}, secret: "asdfhgxuicyvgkjh3247263874yhaksdf", resave: false, saveUninitialized: true}));
+app.use(session({cookie: {maxAge: 1800000}, secret: "asdfhgxuicyvgkjh3247263874yhaksdasdfwewrwxcbve234236f", resave: false, saveUninitialized: true}));
 
 app.get('/bye', router);
 app.get('/', router);
@@ -38,6 +39,16 @@ app.get('/success', router);
 app.post('/api/authLogin', urlencodedParser, router);
 app.post('/api/authUser', urlencodedParser, router);
 app.post('/api/authEmail', urlencodedParser, router);
+
+app.get('/api/user/data', urlencodedParser, router);
+app.get('/api/user/levelup', router);
+
+
+app.get('/api/user/loadHabit', urlencodedParser, router);
+app.post('/api/user/addhabit', urlencodedParser, router);
+
+app.post('/api/user/addStreak', urlencodedParser, router);
+app.post('/api/user/removeHabit', urlencodedParser, router);
 /*app.listen(3000, function(){
 console.log('Express serving at port 3000');
 });*/

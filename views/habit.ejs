@@ -33,11 +33,7 @@
               <a href="/"><li>Home</li></a>
             </ul>
           </div>
-
-
         </nav>
-
-
 
 </header>
 <body class="habit-body">
@@ -45,8 +41,8 @@
 <section class="profile">
 			<div class="profileDiv">
 			<div class="profilePic"><img src='images/face.jpg'></div>
-			<div class="profilePic2"><ul><li>Name: <%=userinfo.fname%> <%=userinfo.lname%></li><li>Habits tracked: 10</li><li>Goals Achieved:  12</li></ul></div>
-			<div class="profilePic3">Points:  5</div>
+			<div class="profilePic2"><ul><li>Username: <%=userinfo.userName%></li><li>Name: <%=userinfo.fname%> <%=userinfo.lname%></li><li>Account level:  <span id="acclevel"></span></li></ul></div>
+			<div class="profilePic3"><ul><li>Points:  <span id="accpoints"></span></li><input type="button" class="levelup" value="Level up"></input></ul></div>
 		</div>
 </section>
 <div id="today"></div>
@@ -59,22 +55,22 @@
 		  <div class="category">
 			<select class="selectpicker category show-tick" id="category">
 					<option value="" selected>Category...</option>
-					<option value= "0">Efficiency</option>
-					<option value= "1">Health</option>
-					<option value= "2">Hobbies </option>
-					<option value= "3">Sports</option>
-					<option value= "4">Study</option>
+					<option value= "1">Efficiency</option>
+					<option value= "2">Health</option>
+					<option value= "3">Hobbies </option>
+					<option value= "4">Sports</option>
+					<option value= "5">Study</option>
 			</select>
       <select class="selectpicker category show-tick" id="timeframe">
-          <option value= "0" selected>Daily</option>
-          <option value= "1">Weekly</option>
-          <option value= "2">Monthly</option>
+          <option value= '' selected>Time interval</option>
+          <option value= '1' >Daily</option>
+          <option value= '2'>Weekly</option>
+          <option value= '3'>Monthly</option>
       </select>
 			</div>
 		  <div class ="input">
  				<input class="habit-input-text" type = "text" id = "title" value="" placeholder="Habit Title">
 
-				<!--<input class="habit-input-number" type = "number" min="1" value="" id ="repes"  placeholder="Repetitions">-->
 			</div>
 		  <div class = "button">
 			  <button id= "addHabit">+ ADD</button>
@@ -87,7 +83,12 @@
 	</div>
 </div>
 
-<p></p>
+<div id="myModal" class="modal">
+  <div class="modal-content">
+    <p class="errormsg" id="habitmsg"></p>
+  </div>
+
+</div>
 
 
 
@@ -95,10 +96,10 @@
 
 </html>
 <script id="entry-template" type="text/x-handlebars-template">
-	<div class="habitStatus" data-id="{{data}}" data-str="{{streak}}">
+	<div class="habitStatus" data-id="{{data}}">
 		<div class="icon"><img src="{{imgURL}}"></div>
 		<div class="habitTitle">{{title}}</div>
-		<div class="completed">{{streak}} days</div>
+		<div class="completed">{{streak}} {{time}}</div>
 		<div class="switch">
       <input type="button" class="habit-button" data-id="{{data}}" value="remove" id="remove"></input>
 			<input type="button" class="habit-button" data-id="{{data}}" value="&#10004;" id="tick"></input>
@@ -107,39 +108,7 @@
 </script>
 
 
-
 <script>
-//This function runs when page is loaded.
-//Populates existing user data from database.
-$(function(){
-
-    $.ajax( { url: "https://api.mlab.com/api/1/databases/user/collections/habit?q={'userID': '<%=userinfo.userName%>'}&apiKey=LuB39tFnIwmJZahnfmYhmq-lThiB_weW",
-		  data: JSON.stringify( {
-        "category": 1,
-        "title": "string",
-        "streak": 1,
-        "timeFrame": 1
-      } ),
-		  type: "GET",
-		  contentType: "application/json",
-      success: function(data){
-        //addContent(data[0].category, data[0].title, data[0].repes);
-        var i = 0;
-        for (var habit in data) {
-          addContent(data[i].category, data[i].title, data[i].timeFrame, data[i].streak, data[i]._id.$oid);
-          i++;
-        }
-      },
-      error: function(xhr, status, err){
-
-        console.log(err);
-
-      }
-
-    } );
-
-});
-
 var d = new Date();
 function formatDate(date) {
   var monthNames = [ "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
@@ -149,7 +118,6 @@ function formatDate(date) {
 
   return day + ' ' + monthNames[monthIndex] + ' ' + year;
 }
-
 document.getElementById("today").innerHTML = formatDate(d);
 
 // Client-side templating
@@ -165,78 +133,118 @@ function addContent(category, titlename, timeFrame, streak, dataid){
   var contentTemplate = Handlebars.compile($('#entry-template').text());
   //use switch statment to adjust habit row
   var contentElement;
+
+  var habitTime;
+
   switch (timeFrame) {
-	case "0":
+	case 1:
 		contentElement = $('#habit-daily');
+    habitTime = "Days";
 		break;
-	case "1":
+	case 2:
 		contentElement = $('#habit-weekly');
+    habitTime = "Weeks";
 		break;
-	case "2":
+	case 3:
 		contentElement = $('#habit-monthly');
+    habitTime = "Months";
 		break;
 	default:
+    habitTime = "Days";
 		contentElement = $('#habit-daily');
   }
-
-	if(category && titlename && timeFrame){
-		var newHabit = contentTemplate({
-			imgURL: icons[parseInt(category)],
-			title: titlename,
-			streak: streak,
-      data: dataid
-		});
+  var newHabit = contentTemplate({
+    imgURL: icons[parseInt(category)-1],
+    title: titlename,
+    streak: streak,
+    data: dataid,
+    time: habitTime
+  });
 
 		contentElement.html(newHabit + contentElement.html());
 
-	}
+
 }
 
+
+
+
 $(function(){
+  //This function runs when page is loaded.
+  //Populates existing user data from database.
+  loadUserData();
+  function loadUserData(){
+    //modal open
+    updateUserData();
+    loadUserHabits();
+    //modal Close
+
+  };
+
+  function loadUserHabits(){
+    $.ajax( { url: "/api/user/loadHabit",
+		  type: "GET",
+      success: function(data){
+
+        var i = 0;
+        for (var habit in data) {
+          addContent(data[i].category, data[i].title, data[i].timeFrame, data[i].streak, data[i]._id);
+
+          i++;
+        }
+
+      },
+      error: function(xhr, status, err){
+        console.log(err);
+
+      }
+
+    } );
+
+  };
 
   $('#addHabit').on('click', function(){
 
+    if(habitValid()){
 
-    $.ajax( { url: "https://api.mlab.com/api/1/databases/user/collections/habit?&apiKey=LuB39tFnIwmJZahnfmYhmq-lThiB_weW",
-		  data: JSON.stringify( {
+    $.ajax( { url: "/api/user/addhabit",
+		  data:{
         "category": $('#category').val(),
         "title": $('#title').val(),
         "timeFrame": $('#timeframe').val(),
         "streak": 0,
-        "userID": '<%=userinfo.userName%>'
+        "userID": '<%=userinfo.userName%>',
 
-      }),
+      },
 		  type: "POST",
-		  contentType: "application/json",
       success: function(data){
-        //clear inputs
-        addContent($('#category').val(), $('#title').val(), $('#timeframe').val(), 0, data._id.$oid);
+        addContent($('#category').val(), $('#title').val(), parseInt($('#timeframe').val()), 0, data._id);
         $('#title').val('');
-        console.log(data._id.$oid)
+
 
       },
       error: function(xhr, status, err){
         console.log(err);
       }
 
-    } );
+      } );
+    }
+
 
   });
 
   $('body').on('click', '#tick' , function(e){
       e.preventDefault();
       var dataid = $(this).data('id');
-      $.ajax( { url: "https://api.mlab.com/api/1/databases/user/collections/habit?q={'_id': {$oid: '"+dataid+"'}}&apiKey=LuB39tFnIwmJZahnfmYhmq-lThiB_weW",
-  		  data: JSON.stringify( {
-          "$inc": {"streak": 1}
-        }),
-  		  type: "PUT",
-  		  contentType: "application/json",
+      $.ajax( { url: "/api/user/addStreak",
+  		  data:{
+          "habitID": dataid
+        },
+  		  type: "POST",
         success: function(data){
-
-          var currentStreak = $('.habitStatus[data-id='+dataid+']').data('str');
-          $('.habitStatus[data-id='+dataid+']').find('.completed').text(currentStreak+1+" days");
-          location.reload();
+          //var currentStreak = $('.habitStatus[data-id='+dataid+']').data('str');
+          $('.habitStatus[data-id='+dataid+']').find('.completed').text(data.streak+" days");
+          updateUserData();
         },
         error: function(xhr, status, err){
           console.log(err);
@@ -249,14 +257,16 @@ $(function(){
   $('body').on('click', '#remove' , function(e){
       e.preventDefault();
       var dataid = $(this).data('id');
-      $.ajax( { url: "https://api.mlab.com/api/1/databases/user/collections/habit?q={'_id': {$oid: '"+dataid+"'}}&apiKey=LuB39tFnIwmJZahnfmYhmq-lThiB_weW",
-        data: JSON.stringify( {
-        "$set": {"userID": ''}
-        }),
-        type: "PUT",
-        contentType: "application/json",
+      $.ajax( { url: "/api/user/removeHabit",
+        data: {
+          "habitID": dataid
+        },
+        type: "POST",
         success: function(data){
-          location.reload();
+          $('.habitStatus[data-id='+dataid+']').remove();
+          $('.errormsg').html('Habit removed');
+          $('.modal').css('display', 'block');
+
         },
         error: function(xhr, status, err){
           console.log(err);
@@ -265,6 +275,71 @@ $(function(){
       } );
 
   });
+
+
+  function habitValid(){
+    //can use negative switch to display error messages
+    if($('#category').val() && $('#timeframe').val() && $('#title').val()){
+
+      return true;
+
+    } else {
+      $('.errormsg').html('Please fill in all the fields');
+      $('.modal').css('display', 'block');
+      return false;
+
+    }
+
+
+  };
+  function levelup(){
+
+    $.ajax( { url: "/api/user/levelup",
+		  type: "GET",
+      success: function(data){
+        updateUserData();
+      },
+      error: function(xhr, status, err){
+        console.log(err);
+
+      }
+
+    });
+
+
+
+  };
+
+  function updateUserData(){
+
+    $.ajax( { url: "/api/user/data",
+		  type: "GET",
+      success: function(data){
+        $('#acclevel').html(data.level);
+        $('#accpoints').html(data.points);
+
+      },
+      error: function(xhr, status, err){
+        console.log(err);
+
+      }
+
+    });
+
+
+
+  };
+
+  $('.levelup').on('click', function(){
+    levelup();
+  });
+
+
+  $('.modal').on('click', function(){
+    $('.modal').css('display', 'none');
+  });
+
+
 
 });
 

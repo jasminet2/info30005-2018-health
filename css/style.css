@@ -315,7 +315,7 @@ font-size: 1em;
 }
 
 .butt2{
-
+margin-top: 20px;
 display: inline-block;
 padding: 20px 60px;
 font-family: 'Montserrat';
@@ -340,6 +340,12 @@ border-radius: 50px;
 
 }
 
+#sign-btn {
+
+margin-top: 20px;
+
+}
+
 .center {
 
 text-align: center;
@@ -356,6 +362,60 @@ text-align: center;
 }
 
 /**               LOGIN PAGE                **/
+
+/**************MODAL BOXES**************/
+
+/*************** TAKEN AND ADAPTED FROM W3SCHOOLS.COM *********************/
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.75); /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+.modal-content {
+    background-color: rgba(0,0,0,0.9);
+    border-radius: 5px;
+    margin: 15% auto; /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 40%; /* Could be more or less, depending on screen size */
+    text-align: center;
+
+}
+
+/* The Close Button */
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    margin: 0;
+
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+#habitmsg {
+
+color:white;
+font-family: 'Montserrat';
+font-size: 1.5em;
+
+}
+/***************************************************************/
 
 input[type="submit"]{
 
@@ -422,8 +482,8 @@ input[type="submit"]{
 font-size: 0.8em;
 margin-bottom: 10px;
 color: #d14836;
-background: rgba(0,0,0, 0.5);
-border-radius: 10px;
+background: rgba(0,0,0, 0.9);
+border-radius: 5px;
 
 }
 
@@ -560,6 +620,8 @@ float: right;
 
 }
 
+
+
 #insert{
 
 	border: 1px solid #485058;
@@ -634,18 +696,7 @@ color: white;
 
 }
 
-#habit-daily{
 
-}
-
-#habit-weekly{
-
-}
-
-#habit-monthly{
-
-
-}
 
 .icon{
 

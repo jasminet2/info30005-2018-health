@@ -38,7 +38,13 @@
       </div>
 </header>
 <body>
+  <div id="myModal" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <p class="errormsg"></p>
+    </div>
 
+  </div>
 
 </body>
 
@@ -49,7 +55,7 @@
 
 <script>
 $(function(){
-  
+
 
   $('#login-btn').on('click', function(e){
 
@@ -67,8 +73,8 @@ $(function(){
         if(data==true){
           $('#login').submit();
         } else {
-          //var errorTemplate = Handlebars.compile($('#error-template').text());
-          $('#error').html('<h2 class="error">Username or password is incorrect</h2>')
+          $('.errormsg').html('Username or password is incorrect');
+          $('.modal').css('display', 'block');
         }
       },
       error: function(xhr, status, err){
@@ -81,6 +87,15 @@ $(function(){
   });
 
 
+  $('.close').on('click', function(){
+    $('.modal').css('display', 'none');
+  });
+  $(window).on('click', function(){
+    $('.modal').css('display', 'none');
+  });
+
 });
+
+
 
 </script>

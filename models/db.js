@@ -23,6 +23,7 @@ mongoose.connect('mongodb://userData:pwd2018@ds117200.mlab.com:17200/user', func
 
 });
 require('./userData.js')
+require('./habitData.js')
 
 var userArray = function(){
 

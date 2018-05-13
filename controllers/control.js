@@ -1,6 +1,7 @@
 const userData = require('../models/db.js');
 var mongoose = require('mongoose');
 var Users = mongoose.model('user');
+var Habits = mongoose.model('habit');
 
 module.exports = {
 
@@ -26,8 +27,7 @@ module.exports = {
             var userinfo = req.session.user;
             res.render('habit.ejs', {userinfo});
 
-          }
-
+          };
 
 
       },
@@ -117,7 +117,9 @@ module.exports = {
             "lname": req.body.lname,
             "email": req.body.email,
             "userName": req.body.userName,
-            "password": req.body.password
+            "password": req.body.password,
+            "points": 0,
+            "level": 1
 
 
           });
@@ -160,6 +162,114 @@ module.exports = {
               res.send(true);
           } else {
             res.send(false);
+          }
+
+        });
+
+
+      },
+      loadHabit: function(req, res){
+
+        Habits.find({userID: req.session.user.userName},function(err, habit){
+          if(habit && !err){
+              res.send(habit);
+          } else {
+            res.send(err);
+          }
+
+        });
+
+
+      },
+      addHabit: function(req, res) {
+
+        var addHabit = new Habits({
+
+          "category": req.body.category,
+          "title": req.body.title,
+          "timeFrame": req.body.timeFrame,
+          "streak": req.body.streak,
+          "userID": req.body.userID
+
+
+        });
+
+        //.save saves it to the database
+
+        addHabit.save(function(err, habit){
+          if(!err){
+            //this is what it does after
+            res.send(habit);
+
+          } else {
+
+            res.send(err);
+
+          }
+
+        });
+
+      },
+      addStreak: function(req, res){
+
+        Habits.findOneAndUpdate( {_id: req.body.habitID}, {$inc: {"streak": 1}},function(err, habit){
+          if(!err){
+            addpoints();
+            habit.streak++;
+            res.send(habit);
+          } else {
+
+            res.send(err);
+          }
+
+        });
+
+        function addpoints(){
+          Users.findOneAndUpdate( {userName: req.session.user.userName}, {$inc: {"points": 20}},function(err){
+            if(!err){
+            } else {
+              res.send(err);
+            }
+
+          });
+
+
+        };
+
+
+      },
+      removeHabit: function(req, res){
+
+        Habits.remove( {_id: req.body.habitID}, function(err){
+          if(!err){
+            res.send(true);
+          } else {
+            res.send(err);
+          }
+
+        });
+
+
+      },
+      getUserData: function(req, res){
+
+        Users.findOne({userName: req.session.user.userName},function(err, data){
+          if(data && !err){
+              res.send(data);
+          } else {
+            res.send(err);
+          }
+        });
+
+
+      },
+      level: function(req, res){
+
+        Users.findOneAndUpdate( {userName: req.session.user.userName}, {$inc: {"points": -100, "level": 1}},function(err){
+          if(!err){
+            res.send(true);
+          } else {
+            res.send(err);
           }
 
         });

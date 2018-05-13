@@ -5,8 +5,9 @@ var habitSchema = mongoose.Schema (
 
   "category": Number,
   "title": String,
-  "repes": Number,
-  "userName": String,
+  "timeFrame": Number,
+  "streak": Number,
+  "userID": String
 
   }
 );
