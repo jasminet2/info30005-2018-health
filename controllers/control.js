@@ -11,12 +11,6 @@ module.exports = {
 
       },
 
-      comingSoon: function(req, res) {
-
-          res.render('comingsoon.ejs', {userData});
-
-      },
-
       habit: function(req, res) {
 
           if(!req.session.user){
@@ -29,38 +23,6 @@ module.exports = {
 
           };
 
-
-      },
-
-      showUsers: function(req, res) {
-
-          res.render('users.ejs', {userData});
-
-      },
-
-      users: function(req, res) {
-        var response;
-        var temp_string='';
-        for(i=0; i<userData.length; i++){
-          temp_string+="Name: " + userData[i].name + " Email: " + userData[i].email + "ID: "+ userData[i].id;
-        }
-        response = temp_string;
-        res.send(response);
-      },
-
-      userFind: function(req, res){
-        var searchID = req.params.id;
-        var userFound = false;
-        for(i=0; i<userData.length; i++){
-            if(userData[i].id==searchID){
-              res.send(userData[i]);
-              userFound = true;
-              break;
-            }
-        }
-        if(!userFound){
-          res.send('User not found in database');
-        }
 
       },
 

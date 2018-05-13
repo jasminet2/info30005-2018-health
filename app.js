@@ -18,15 +18,8 @@ app.set('view engine', 'ejs')
 
 app.use(session({cookie: {maxAge: 1800000}, secret: "asdfhgxuicyvgkjh3247263874yhaksdasdfwewrwxcbve234236f", resave: false, saveUninitialized: true}));
 
-app.get('/bye', router);
+
 app.get('/', router);
-
-//displays all users
-app.get('/users', router);
-
-//displays user with specific id using req.params
-app.get('/users/:id', router);
-app.get('/comingsoon', router);
 app.get('/habit', urlencodedParser, router);
 
 app.get('/login', router);

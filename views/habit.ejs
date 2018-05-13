@@ -39,16 +39,19 @@
 <body class="habit-body">
 
 <section class="profile">
-			<div class="profileDiv">
+		<div class="profileDiv">
 			<div class="profilePic"><img src='images/face.jpg'></div>
-			<div class="profilePic2"><ul><li>Username: <%=userinfo.userName%></li><li>Name: <%=userinfo.fname%> <%=userinfo.lname%></li><li>Account level:  <span id="acclevel"></span></li></ul></div>
-			<div class="profilePic3"><ul><li>Points:  <span id="accpoints"></span></li><input type="button" class="levelup" value="Level up"></input></ul></div>
+			<div class="userInfo"><ul><li><span class="usernamep">Username:</span> <span class="usernamep2"><%=userinfo.userName%></span></li><li>Name: <span class="namep"><%=userinfo.fname%> <%=userinfo.lname%><span class="namep"></li></ul></div>
+        <div class="userlevel"><input type="button" class="levelup" value="Level up"></input></div>
+      <div class="userPoints"><div class="points"><div class="point1">Points</div>  <div class="point2"><span id="accpoints"></span></div></div></div>
+      <div class="userPoints"><div class="points">       <div class="point1">Level</div>  <div class="point2"><span id="acclevel"></span></div>                   </div></div>
+
 		</div>
 </section>
-<div id="today"></div>
+
 
 <div class="container">
-
+  <div id="today"></div>
 	<div id="app">
 	  <div id="insert">
 		  <h2>Getting Started with a New Habit... </h2>
@@ -89,7 +92,6 @@
   </div>
 
 </div>
-
 
 
 </body>
@@ -297,6 +299,7 @@ $(function(){
     $.ajax( { url: "/api/user/levelup",
 		  type: "GET",
       success: function(data){
+
         updateUserData();
       },
       error: function(xhr, status, err){
@@ -331,7 +334,16 @@ $(function(){
   };
 
   $('.levelup').on('click', function(){
+    if(parseInt($('#accpoints').html()) >= 100){
     levelup();
+    $('.errormsg').html('Congratulations! You\'ve leveled up');
+    $('.modal').css('display', 'block');
+  } else {
+
+    $('.errormsg').html('You need 100 Points to level up');
+    $('.modal').css('display', 'block');
+
+  }
   });
 
 

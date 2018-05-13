@@ -379,6 +379,7 @@ text-align: center;
     background-color: rgba(0,0,0,0.75); /* Black w/ opacity */
 }
 
+
 /* Modal Content/Box */
 .modal-content {
     background-color: rgba(0,0,0,0.9);
@@ -516,57 +517,143 @@ border-radius: 5px;
 
 .profile {
 
-background-color: #d7443f;
-height:20vh;
+height:150px;
+width: 100%;
 margin:auto;
+margin-top: 15px;
 
 }
 
 .profileDiv{
-
+box-sizing: border-box;
 width: 80%;
 margin:auto;
 color: white;
-font-family: 'Courgette';
-font-size: 1.5em;
+background-color: rgba(1, 1, 1, 0.6);
+height: 100%;
+border-radius:30px 30px 5px 5px ;
+border-bottom: 2px solid rgba(0, 0, 0, 1);
+box-shadow: 5px 5px 2px black;
 
 }
 
 .profilePic {
-
-width: 15%;
+position: relative;
 float: left;
-display: block;
+margin-left: 40px;
+
 
 }
 
 .profilePic img{
 
-padding-top: 2vh;
-width: 15vh;
+margin-top: 20px;
+height: 110px;
 border-radius: 50%;
+border: 5px outset rgba(14,17,17, 0.7);
+
 
 }
 
-.profilePic2 {
+.userInfo {
 
-padding-top: 4vh;
-width: 70%;
+display: block;
 float: left;
+font-family: 'Montserrat';
+font-size: 1.5em;
+height: inherit;
+background-color: black;
+padding-left: 20px;
+padding-right: 20px;
+height: 70%;
+
+margin-top: 20px;
+padding-top: 5px;
+padding-bottom: 90px;
+border-radius: 10px;
+border: 5px outset rgba(14,17,17, 0.7);
 
 }
 
-.profilePic2 ul{
-
+.userInfo ul{
 list-style: none;
+}
+
+.userPoints {
+display: block;
+width: 175px;
+float: right;
+height: 100%;
 
 }
 
-.profilePic3 {
-
-padding-top: 4vh;
-width: 15%;
+.userlevel{
 float: right;
+display: block;
+width: 175px;
+text-align: center;
+height: 100%;
+}
+
+.userlevel input{
+height: 70%;
+margin-top: 14%;
+background-color: rgba(14,17,17, 0.5);
+width: 70%;
+font-size: 20px;
+font-family: 'Montserrat';
+border-radius: 10px;
+border: 5px outset rgba(18,25,25, 0.7);
+}
+
+.userlevel input:hover{
+height: 70%;
+margin-top: 14%;
+background-color: rgb(76,175,80);
+width: 70%;
+font-size: 20px;
+font-family: 'Montserrat';
+border-radius: 10px;
+border: 5px outset rgba(18,25,25, 0.7);
+}
+
+
+.userPoints{
+height: 100%;
+text-align: center;
+margin-right: 10px;
+}
+.points{
+height: 70%;
+width: 100%;
+margin: auto;
+margin-top: 15%;
+background-color: rgb(0, 0, 0);
+border: 5px outset rgba(18,25,25, 0.7);
+border-radius: 30px;
+font-family: monospace;
+}
+.point1{
+height: 25%;
+width: 70%;
+margin: auto;
+text-transform: uppercase;
+
+
+}
+.point2{
+height: 50%;
+width: 70%;
+margin: auto;
+background-color: rgb(76,175,80);
+border: 3px inset rgba(18,25,25, 0.4);
+border-radius: 5px;
+font-size: 27px;
+}
+
+
+.usernamep2, .namep2 {
+
 
 }
 
@@ -580,18 +667,16 @@ float: right;
 }
 
 #today{
-	padding-right: 50px;
 	width:auto;
 	font-weight: 500;
 	font-size: 2.4em;
 	margin-bottom: 20px;
-	border: 1px solid #d7443f;
-	background:#d7443f;
-	border-radius:0 20px 20px 0;
+	background-color: rgba(1, 1, 1, 0.6);
+	border-radius:10px;
 	box-shadow: 10px 10px 5px black;
-	display: inline-block;
   margin-top: 20px;
   color: white;
+  text-align: center;
 
 }
 
@@ -624,9 +709,8 @@ float: right;
 
 #insert{
 
-	border: 1px solid #485058;
-	background:#333A42;
-	border-radius:0 20px 0 20px;
+	background-color: rgba(1, 1, 1, 0.6);
+	border-radius:10px 10px 10px 10px;
 	box-shadow: 10px 10px 5px black;
   color: white;
 
@@ -651,6 +735,7 @@ float: right;
 	margin-bottom: 20px;
   padding: 3px 0px 3px 10px;
   border-radius: 5px;
+
 
 }
 
@@ -682,18 +767,19 @@ color: white;
 #habit-container{
 	margin-top: 2.5%;
   padding: 20px 20px 20px 20px;
-  background-color: #333A42;
-  border-radius:0 20px 0 20px;
+  background-color: rgba(1, 1, 1, 0.6);
+  border-radius:10px 10px 10px 10px;
   color: white;
 
 }
 
 #habit-container h1{
 	background-color: rgba(0,0,0, 0.9);
-
-  padding-left: 10px;
-  border-radius:5px;
-
+  display: inline-block;
+  padding-left: 15px;
+  padding-right: 15px;
+  border-radius:20px;
+  border: 5px outset rgba(14,17,17, 0.7);
 }
 
 
