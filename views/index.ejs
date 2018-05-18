@@ -2,10 +2,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <link rel="stylesheet" type="text/css" href="../css/normalize.css">
-  <link rel="stylesheet" type="text/css" href="../css/grid.css">
+  <link rel="stylesheet" type="text/css" href="normalize.css">
+  <link rel="stylesheet" type="text/css" href="grid.css">
   <link rel="stylesheet" type="text/css" href="style.css">
-  <script src="javascript/animations.js"></script>
+  <script type="javascript" src="../javascript/animations.js"></script>
   <title>OneHealth</title>
 
 </head>
@@ -15,9 +15,9 @@
           <div class="row">
             <a href="/"><img src="images/logo.png" class="logo"></img></a>
             <ul class="navlinks">
-              <a href="/login"><li>Login</li></a>
+              <a href="/login" ><li>Login</li></a>
               <a href="/habit"><li>Habit Tracker</li></a>
-              <a href="/"><li>Home</li></a>
+              <a href="/" id ="homeButton"><li>Home</li></a>
             </ul>
           </div>
 
@@ -25,10 +25,10 @@
         </nav>
 
           <div class="row" id="welcome">
-            <h1>Creating healthier lives through healthy apps</h1>
+            <h1>Create a Healthier Life Through the Healthy App.</h1>
 
-            <input class="butt" type="button" value="About us" onclick="location.href='#about'"></input> </br>
-            <input class="butt" type="button" value="Habit tracker" onclick="location.href='/habit'"></input>
+            <input class="butt" type="button" value="About us" onclick="location.href='#about'"></br>
+            <input class="butt" type="button" value="Habit Tracker" onclick="location.href='/habit'">
 
           </div>
 
@@ -37,18 +37,18 @@
 <!-- ***************************** ABOUT US ************************ -->
     <section class="section-about full-section" id="about">
       <h1 class="section-headers">About us</h1>
-      <h2>Hoping to keep track of your daily routine every day? </br>
-      Well, look no further; here, at One Health, we are all about helping you streamline your path to a healthier lifestyle </h2>
+      <h2>Hoping to keep track of your daily routine every day? <br>
+          At here, <i>One Health</i>, we are all about helping you streamline your path to a healthier lifestyle. </h2>
       <div class="aboutus clearfix">
         <ul>
-        <li><img src='images/who2.png'><p>We are a student group currently studying INFO30005</p></li>
-        <li><img src='images/heart3.png'><p>Our aim is to assist you in keeping your day-to-day routine in check and to aspire you to be motivated and healthier each day</p></li>
-        <li><img src='images/services.png'><p>Our services include:</br>  A habit tracker presented on a daily, weekly and monthly basis </br></p></li>
+            <li><h3>Who are we?</h3><img src='images/who4.png'><p>A group of students currently studying INFO30005</p></li>
+        <li><h3>our aim</h3><img src='images/care.png'><p>Assist you in keeping your daily routine in check and to aspire you to stay motivated and healthy</p></li>
+            <li><h3>our service</h3><img src='images/services2.png'><p>A habit tracker presented on daily, weekly and monthly sections</p></li>
         </ul>
 
       </div>
 
-      <input class="butt2" type="button" value="Learn more" onclick="location.href='#'"></input>
+      <input class="butt2" type="button" value="Learn More" onclick="location.href='#'"></input>
 
 
     </section>
@@ -57,25 +57,24 @@
 <!-- ***************************** HABIT TRACKER INFO ************************ -->
 
     <section class="section-habit full-section" id="habit">
-      <h1 class="section-headers">Our Habit Tracker</h1>
+        <h1 class="section-headers">Our Habit Tracker</h1>
 
 
       <div class="row habit-parent">
-
-      <div class="habit-div"><img src='images/services.png'></div>
+      <div class="habit-div"><img src='images/template.png'></div>
       <div class="habit-div">
 
         <ul>
-           <li>Track up to 10 habits &#10003;</li>
-           <li>Display in three different levels - daily, weekly, monthly &#10003;</li>
-           <li>Earn points to unlock new features &#10003;</li>
-           <li>Easy to use UI &#10003;</li>
-           <li>Available 24/7 &#10003;</li>
+           <li>Track up to 10 habits</li>
+           <li>Display in three intervals - daily, weekly, monthly</li>
+           <li>Earn points to unlock more features</li>
+           <li>Easy to use UI</li>
+           <li>Available 24/7</li>
 
         </ul>
 
 
-        <div><input class="butt2" type="button" value="Sign up" onclick="location.href='/habit'"></input></div>
+        <div><input class="butt2" type="button" value="Get Started Now!" onclick="location.href='/habit'"></div>
 
       </div>
 

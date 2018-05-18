@@ -20,7 +20,7 @@
             <ul class="navlinks">
               <a href="/login"><li class="login">Login</li></a>
               <a href="/habit" id="page"><li>Habit tracker</li></a>
-              <a href="/"><li>Home</li></a>
+              <a href="/" id="homeButton"><li>Home</li></a>
             </ul>
           </div>
         </nav>
@@ -28,10 +28,12 @@
         <form method="POST" id="login">
         <h1>Login</h1>
         <div id="error"></div>
-        <input class="input-text" id="user" type="text" name="userName" placeholder="Username"></input>
-        <input class="input-password" id="pass" type="password" name="password" placeholder="Password"></input>
+            <p class="label">Username</p>
+        <input class="input-text" id="user" type="text" name="userName">
+            <p class="label">Password</p>
+        <input class="input-password" id="pass" type="password" name="password">
         <p>Don't have an account? Create one for free <a href='/signup'>here</a>.</p>
-        <input type="submit" value="Login" id="login-btn" class="butt"></input>
+        <input type="submit" value="Login" id="login-btn" class="butt">
 
         </form>
 
@@ -73,7 +75,7 @@ $(function(){
         if(data==true){
           $('#login').submit();
         } else {
-          $('.errormsg').html('Username or password is incorrect');
+          $('.errormsg').html('Username or password is incorrect.');
           $('.modal').css('display', 'block');
         }
       },

@@ -12,9 +12,9 @@
 <link rel="stylesheet" href="style.css">
 
 <!-- Javascript -->
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 
-<script src="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/js/bootstrap.min.js"></script>
+<script src="https://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/js/bootstrap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/js/bootstrap-select.min.js"></script>
 <!-- handlebars.js -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.10/handlebars.js"></script>
@@ -23,66 +23,79 @@
 
 </head>
 
-<header class="habit-head">
-        <nav>
-          <div class="row">
-            <a href="/"><img src="images/logo.png" class="logo-habit"></img></a>
+<header class="tracker-page-header">
+	<nav>
+		<div class="row">
+            <a href="/"><img src="images/logo.png" class="logo tracker-page-logo"></img></a>
             <ul class="navlinks">
               <a href="/logout"><li>Logout</li></a>
               <a href="/habit" id="page"><li>Habit tracker</li></a>
-              <a href="/"><li>Home</li></a>
+              <a href="/" id="homeButton"><li>Home</li></a>
             </ul>
-          </div>
-        </nav>
-
+		</div>
+	</nav>
 </header>
+
 <body class="habit-body">
 
 <section class="profile">
 		<div class="profileDiv">
+			<div class="userInfo">
+				<ul>
+					<li><span class="usernamep label">Username:</span> <span class="usernamep2"><%=userinfo.userName%></span></li>
+				</ul>
+			</div>
 			<div class="profilePic"><img src='images/face.jpg'></div>
-			<div class="userInfo"><ul><li><span class="usernamep">Username:</span> <span class="usernamep2"><%=userinfo.userName%></span></li><li>Name: <span class="namep"><%=userinfo.fname%> <%=userinfo.lname%><span class="namep"></li></ul></div>
-        <div class="userlevel"><input type="button" class="levelup" value="Level up"></input></div>
-      <div class="userPoints"><div class="points"><div class="point1">Points</div>  <div class="point2"><span id="accpoints"></span></div></div></div>
-      <div class="userPoints"><div class="points">       <div class="point1">Level</div>  <div class="point2"><span id="acclevel"></span></div>                   </div></div>
 
+			<div class="userlevel"><input type="button" class="levelup" value="Level up"></input></div>
+			<div class="point-display">
+      		<div class="userPoints">
+			  <div class="points">
+				  <div class="point1">Points</div>
+				  <div class="point2"><span id="accpoints"></span></div>
+			  </div>
+	  		</div>
+      		<div class="userPoints">
+		  		<div class="points">
+			  	<div class="point1">Level</div>
+			  	<div class="point2"><span id="acclevel"></span></div>
+		  		</div>
+	  		</div>
+			</div>
 		</div>
 </section>
 
 
-<div class="container">
+<div class="grid-container">
   <div id="today"></div>
-	<div id="app">
-	  <div id="insert">
-		  <h2>Getting Started with a New Habit... </h2>
-		  <div class="category">
+	<div id="insert">
+		<h2>Hi <%=userinfo.fname%>! Let's Get Started with a New Habit... </h2>
+		<div class="category">
+			<p class="label">Category</p>
 			<select class="selectpicker category show-tick" id="category">
-					<option value="" selected>Category...</option>
-					<option value= "1">Efficiency</option>
-					<option value= "2">Health</option>
-					<option value= "3">Hobbies </option>
-					<option value= "4">Sports</option>
-					<option value= "5">Study</option>
+				<option value= "1">Efficiency</option>
+				<option value= "2">Health</option>
+				<option value= "3">Hobbies </option>
+				<option value= "4">Sports</option>
+				<option value= "5">Study</option>
 			</select>
-      <select class="selectpicker category show-tick" id="timeframe">
-          <option value= '' selected>Time interval</option>
-          <option value= '1' >Daily</option>
-          <option value= '2'>Weekly</option>
-          <option value= '3'>Monthly</option>
-      </select>
-			</div>
-		  <div class ="input">
- 				<input class="habit-input-text" type = "text" id = "title" value="" placeholder="Habit Title">
-
-			</div>
-		  <div class = "button">
-			  <button id= "addHabit">+ ADD</button>
-		  </div>
-
- 		</div>
- 		<div id="habit-container"><h1>Daily</h1><div id="habit-daily"></div></div>
-    <div id="habit-container"><h1>Weekly</h1><div id="habit-weekly"></div></div>
-    <div id="habit-container"><h1>Monthly</h1><div id="habit-monthly"></div></div>
+			<p class="label">Duration</p>
+			<select class="selectpicker category show-tick" id="timeframe">
+				<option value= '1' >Daily</option>
+				<option value= '2'>Weekly</option>
+				<option value= '3'>Monthly</option>
+			</select>
+		</div>
+		<div class ="input">
+			<p class="label">Habit Title</p>
+			<input class="habit-input-text" type = "text" id = "title" value="" placeholder="Type Here">
+		</div>
+		<div class = "button"><button id= "addHabit">Add Habit</button></div>
+	</div>
+	<div class="habit-tracker">
+		<div id="habit-container"><h1>Daily goal</h1><div id="habit-daily"></div></div>
+		<div id="habit-container"><h1>Weekly goal</h1><div id="habit-weekly"></div></div>
+		<div id="habit-container"><h1>Monthly goal</h1><div id="habit-monthly"></div></div>
 	</div>
 </div>
 
@@ -94,33 +107,37 @@
 </div>
 
 
+
+
 </body>
 
 </html>
 <script id="entry-template" type="text/x-handlebars-template">
 	<div class="habitStatus" data-id="{{data}}">
+		<input type="button" class="habit-button" data-id="{{data}}" value="Remove" id="remove">
 		<div class="icon"><img src="{{imgURL}}"></div>
 		<div class="habitTitle">{{title}}</div>
 		<div class="completed">{{streak}} {{time}}</div>
 		<div class="switch">
-      <input type="button" class="habit-button" data-id="{{data}}" value="remove" id="remove"></input>
-			<input type="button" class="habit-button" data-id="{{data}}" value="&#10004;" id="tick"></input>
+			<input type="button" class="habit-button" data-id="{{data}}" value="&#10004;" id="tick">
 		</div>
 	</div>
 </script>
 
 
 <script>
-var d = new Date();
-function formatDate(date) {
-  var monthNames = [ "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-  var day = date.getDate();
-  var monthIndex = date.getMonth();
-  var year = date.getFullYear();
+    var d = new Date();
+    function formatDate(date) {
+        var monthNames = [ "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+        var dayNames = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+        var day = date.getDate();
+        var dayIndex = date.getDay();
+        var monthIndex = date.getMonth();
+        var year = date.getFullYear();
 
-  return day + ' ' + monthNames[monthIndex] + ' ' + year;
-}
-document.getElementById("today").innerHTML = formatDate(d);
+        return day + ' ' + monthNames[monthIndex] + ' ' + year + ', ' + dayNames[dayIndex];
+    }
+    document.getElementById("today").innerHTML = formatDate(d);
 
 // Client-side templating
 var icons = ["https://png.icons8.com/ios/30/27ae60/clock-filled.png",

@@ -19,7 +19,7 @@
             <ul class="navlinks">
               <a href="/login"><li>Login</li></a>
               <a href="/habit" id="page"><li>Habit tracker</li></a>
-              <a href="/"><li>Home</li></a>
+              <a href="/" id="homeButton"><li>Home</li></a>
             </ul>
           </div>
         </nav>
@@ -27,13 +27,18 @@
         <form method="POST" id="signup">
         <h1>Create account</h1>
         <div id="error"></div>
-        <input class="input-text" id="fname" type="text" name="fname" placeholder="First Name" required></input>
-        <input class="input-text" id="lname" type="text" name="lname" placeholder="Last Name" required></input>
-        <input class="input-email" id="email" type="email" name="email" placeholder="Email" required></input>
-        <input class="input-text" id="user" type="text" name="userName" placeholder="Username" required></input>
-        <input class="input-password" id="passw" type="password" name="password" placeholder="Password" required></input>
+            <p class="label">First Name</p>
+        <input class="input-text" id="fname" type="text" name="fname" required></input>
+            <p class="label">Last Name</p>
+        <input class="input-text" id="lname" type="text" name="lname" required></input>
+            <p class="label">Email</p>
+        <input class="input-email" id="email" type="email" name="email" required></input>
+            <p class="label">Username</p>
+        <input class="input-text" id="user" type="text" name="userName" required></input>
+            <p class="label">Password</p>
+        <input class="input-password" id="passw" type="password" name="password" required></input>
         <p>Already have an account? Login <a href='/login'>here</a>.</p>
-        <input id="sign-btn" type="button" class="butt" value="Sign up"></input>
+        <input id="sign-btn" type="button" class="butt" value="Sign Up"></input>
         </form>
       </div>
 </header>
