@@ -7,10 +7,9 @@ var habitSchema = mongoose.Schema (
   "title": String,
   "timeFrame": Number,
   "streak": Number,
-  "userID": String
-
-  }
-);
+  "userID": String,
+  "completed": {type: Boolean, default: false}
+  });
 
 
 mongoose.model('habit', habitSchema);

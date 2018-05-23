@@ -488,7 +488,7 @@ input[type="submit"]{
 .input-text, .input-email, .input-password{
 
 	background: rgba(0,0,0, 0.9);
-	border: 1px solid #333;
+	border: 2px solid #333;
 	font-family: 'Lato', sans-serif;
 	color: white;
 	font-size: 0.8em;
@@ -758,7 +758,7 @@ list-style: none;
     font-family: "cabin";
     font-size: 2.4em;
     font-weight: bold;
-    color: #86c232;
+    color: white;
 }
 
 #insert .label{
@@ -767,6 +767,7 @@ list-style: none;
     font-size: 1.1em;
     text-transform: uppercase;
     margin: 2px 0;
+    color: #86c232;
 
 }
 .habit-input-text{
@@ -850,7 +851,7 @@ list-style: none;
 
 .habitStatus{
 
-    text-transform: uppercase;
+
     margin-left: auto;
     margin-right: auto;
     width: 95%;
@@ -864,33 +865,31 @@ list-style: none;
 }
 
 .habitTitle {
-    position:relative;
+    text-transform: uppercase;
     margin-left: 2em;
-	font-size: 1.2em;
+    font-size: 1.3em;
     font-weight: 900;
 	color: white;
     min-width: 10em;
     max-width: 10em;
     overflow: hidden;
-
 }
 
 .completed{
     position:relative;
-    font-size: 1em;
+    font-size: 1.2em;
     font-weight: 700;
 	margin-left: 2em;
     color: #DDD;
 
 }
 
-
-#remove{
+.remove{
     background-color: rgba(215,68,63,0.8);
     float: left;
 }
 
-#remove:hover{
+.remove:hover{
     background-color: red;
     opacity: 0.8;
 
@@ -905,14 +904,15 @@ list-style: none;
     font-size: 1em;
     margin-right: 10px;
     border-style: hidden;
+    text-transform: uppercase;
 }
 
-#tick{
+.tick{
     background-color: rgba(76,175,80, 0.8);
 
 }
 
-#tick:hover {
+.tick:hover {
 
     background:linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,.2)) rgba(76,175,80, 0.8);
 
@@ -929,10 +929,10 @@ list-style: none;
 
 @media only screen and (max-width: 600px){
 
-    #insert > h2 {
-
+    #today, #insert > h2 {
+        font-size: 1.8em;
+        font-family: "Lato", sans-serif;
     }
-
 
     .label{
         padding: 0 1em;
@@ -950,7 +950,7 @@ list-style: none;
         width: 100px;
     }
 
-    button, .button{
+    button, .button, #addHabit{
         display:block;
         margin-top: 0.4em;
         margin-left: auto;
@@ -969,7 +969,7 @@ list-style: none;
                 "daily"
                 "weekly"
                 "monthly";
-        grid-row-gap: 2em;
+        grid-row-gap: 20px;
     }
 
 

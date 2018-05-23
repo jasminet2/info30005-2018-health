@@ -114,12 +114,12 @@
 </html>
 <script id="entry-template" type="text/x-handlebars-template">
 	<div class="habitStatus" data-id="{{data}}">
-		<input type="button" class="habit-button" data-id="{{data}}" value="Remove" id="remove">
+		<input type="button" class="habit-button remove" data-id="{{data}}" value="Remove">
 		<div class="icon"><img src="{{imgURL}}"></div>
 		<div class="habitTitle">{{title}}</div>
 		<div class="completed">{{streak}} {{time}}</div>
 		<div class="switch">
-			<input type="button" class="habit-button" data-id="{{data}}" value="&#10004;" id="tick">
+			<button class="habit-button tick" data-id="{{data}}" id="{{data}}">&#10004;</button>
 		</div>
 	</div>
 </script>
@@ -139,6 +139,7 @@
     }
     document.getElementById("today").innerHTML = formatDate(d);
 
+
 // Client-side templating
 var icons = ["https://png.icons8.com/ios/30/27ae60/clock-filled.png",
 			"https://png.icons8.com/ios/30/c0392b/heart-health-filled.png",
@@ -147,31 +148,33 @@ var icons = ["https://png.icons8.com/ios/30/27ae60/clock-filled.png",
 			"https://png.icons8.com/ios/30/1abc9c/saving-book-filled.png"];
 
 
-function addContent(category, titlename, timeFrame, streak, dataid){
+function addContent(category, titlename, timeFrame, streak, dataid, completed){
 
   var contentTemplate = Handlebars.compile($('#entry-template').text());
-  //use switch statment to adjust habit row
+
   var contentElement;
 
-  var habitTime;
 
-  switch (timeFrame) {
+    //use switch statement to adjust habit row
+  var habitTime;
+    switch (timeFrame) {
 	case 1:
 		contentElement = $('#habit-daily');
-    habitTime = "Days";
+    habitTime = "Times";
 		break;
 	case 2:
 		contentElement = $('#habit-weekly');
-    habitTime = "Weeks";
+    habitTime = "Times";
 		break;
 	case 3:
 		contentElement = $('#habit-monthly');
-    habitTime = "Months";
+    habitTime = "Times";
 		break;
 	default:
-    habitTime = "Days";
+    habitTime = "Times";
 		contentElement = $('#habit-daily');
   }
+
   var newHabit = contentTemplate({
     imgURL: icons[parseInt(category)-1],
     title: titlename,
@@ -184,6 +187,7 @@ function addContent(category, titlename, timeFrame, streak, dataid){
 
 
 }
+
 
 
 
@@ -232,8 +236,7 @@ $(function(){
         "title": $('#title').val(),
         "timeFrame": $('#timeframe').val(),
         "streak": 0,
-        "userID": '<%=userinfo.userName%>',
-
+        "userID": '<%=userinfo.userName%>'
       },
 		  type: "POST",
       success: function(data){
@@ -252,9 +255,10 @@ $(function(){
 
   });
 
-  $('body').on('click', '#tick' , function(e){
+  $('body').on('click', '.tick' , function(e){
       e.preventDefault();
       var dataid = $(this).data('id');
+
       $.ajax( { url: "/api/user/addStreak",
   		  data:{
           "habitID": dataid
@@ -262,28 +266,57 @@ $(function(){
   		  type: "POST",
         success: function(data){
           //var currentStreak = $('.habitStatus[data-id='+dataid+']').data('str');
-          $('.habitStatus[data-id='+dataid+']').find('.completed').text(data.streak+" days");
+          $('.habitStatus[data-id='+dataid+']').find('.completed').text(data.streak+" Times");
+
           updateUserData();
+
         },
         error: function(xhr, status, err){
           console.log(err);
         }
 
       } );
+  });
+
+  $('body').on('click', '.tick' , function(e){
+
+      e.preventDefault();
+      var dataid = $(this).data('id');
+
+      if(!localStorage.getItem('completed')){
+          populateStorage();
+      }else{
+          setCompleted();
+      }
+      function populateStorage(){
+          localStorage.setItem('completed', 'Completed!');
+          localStorage.setItem('disabled', 'disabled');
+          setCompleted();
+      };
+
+      function setCompleted(){
+          var status = localStorage.getItem('completed');
+          var disabled = localStorage.getItem('disabled');
+
+          $('#'+ dataid).append(status);
+          $('#'+ dataid).attr("disabled", disabled);
+
+      };
 
   });
 
-  $('body').on('click', '#remove' , function(e){
+
+  $('body').on('click', '.remove' , function(e){
       e.preventDefault();
       var dataid = $(this).data('id');
       $.ajax( { url: "/api/user/removeHabit",
         data: {
           "habitID": dataid
-        },
+		},
         type: "POST",
         success: function(data){
           $('.habitStatus[data-id='+dataid+']').remove();
-          $('.errormsg').html('Habit removed');
+          $('.errormsg').html('Habit Removed');
           $('.modal').css('display', 'block');
 
         },
@@ -371,7 +404,4 @@ $(function(){
 
 
 });
-
-
-
 </script>

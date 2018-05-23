@@ -153,7 +153,6 @@ module.exports = {
           "streak": req.body.streak,
           "userID": req.body.userID
 
-
         });
 
         //.save saves it to the database
@@ -175,16 +174,16 @@ module.exports = {
       addStreak: function(req, res){
 
         Habits.findOneAndUpdate( {_id: req.body.habitID}, {$inc: {"streak": 1}},function(err, habit){
-          if(!err){
-            addpoints();
-            habit.streak++;
-            res.send(habit);
-          } else {
+              if(!err){
+                  addpoints();
+                  habit.streak++;
+                  res.send(habit);
+              } else {
 
-            res.send(err);
-          }
+                  res.send(err);
+              }
 
-        });
+          });
 
         function addpoints(){
           Users.findOneAndUpdate( {userName: req.session.user.userName}, {$inc: {"points": 20}},function(err){
@@ -194,10 +193,20 @@ module.exports = {
             }
 
           });
-
-
         };
 
+        Habits.findById({_id: req.body.habitID}, function(err, habit){
+            if(!habit.completed){
+                habit.completed = !habit.completed;
+                habit.save(function(err){
+                    if(err){
+                        console.log('ERROR!');
+                    }
+                })
+            }
+            console.log(habit.completed);
+        }
+        );
 
       },
       removeHabit: function(req, res){
@@ -210,9 +219,8 @@ module.exports = {
           }
 
         });
-
-
       },
+
       getUserData: function(req, res){
 
         Users.findOne({userName: req.session.user.userName},function(err, data){
