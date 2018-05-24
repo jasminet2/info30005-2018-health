@@ -19,7 +19,7 @@ app.set('view engine', 'ejs')
 app.use(session({cookie: {maxAge: 1800000}, secret: "asdfhgxuicyvgkjh3247263874yhaksdasdfwewrwxcbve234236f", resave: false, saveUninitialized: true}));
 
 
-app.get('/', router);
+app.get('/', urlencodedParser, router);
 app.get('/habit', urlencodedParser, router);
 
 app.get('/login', router);

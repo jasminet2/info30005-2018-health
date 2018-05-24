@@ -5,7 +5,7 @@
   <link rel="stylesheet" type="text/css" href="normalize.css">
   <link rel="stylesheet" type="text/css" href="grid.css">
   <link rel="stylesheet" type="text/css" href="style.css">
-  <script type="javascript" src="../javascript/animations.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
   <title>OneHealth</title>
 
 </head>
@@ -15,7 +15,7 @@
           <div class="row">
             <a href="/"><img src="images/logo.png" class="logo"></img></a>
             <ul class="navlinks">
-              <a href="/login" ><li>Login</li></a>
+              <a href="/login" id="navlogin" ><li class = 'login'>Login</li></a>
               <a href="/habit"><li>Habit Tracker</li></a>
               <a href="/" id ="homeButton"><li>Home</li></a>
             </ul>
@@ -86,4 +86,14 @@
 
 
 </body>
+<script>
+$(function(){
+  if(<%=status.loggedIn%>){
+    
+    $('.login').html('Logout');
+    $('#navlogin').attr("href", "/logout");
+
+  }
+});
+</script>
 <html>

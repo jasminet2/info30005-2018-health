@@ -7,7 +7,16 @@ module.exports = {
 
 
       homepage: function(req, res) {
-        res.render('index.ejs');
+        var status = {loggedIn: false};
+        if(req.session.user){
+          status.loggedIn = true;
+          res.render('index.ejs', {status});
+
+        } else {
+
+          res.render('index.ejs', {status});
+
+        }
 
       },
 

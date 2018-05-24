@@ -160,9 +160,7 @@ function addContent(category, titlename, timeFrame, streak, dataid, completed){
       status = "Completed";
       disabled = "disabled";
   } else {
-
 		status = '\u2713';
-
 	}
 
     //use switch statement to adjust habit row
@@ -215,7 +213,7 @@ $(function(){
     //modal Close
 
   };
-
+	
   function loadUserHabits(){
     $.ajax( { url: "/api/user/loadHabit",
 		  type: "GET",
