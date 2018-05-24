@@ -93,9 +93,9 @@
 		<div class = "button"><button id= "addHabit">Add Habit</button></div>
 	</div>
 	<div class="habit-tracker">
-		<div id="habit-container"><h1>Daily goal</h1><div id="habit-daily"></div></div>
-		<div id="habit-container"><h1>Weekly goal</h1><div id="habit-weekly"></div></div>
-		<div id="habit-container"><h1>Monthly goal</h1><div id="habit-monthly"></div></div>
+		<div id="habit-container"><h1>Daily habits</h1><div id="habit-daily"></div></div>
+		<div id="habit-container"><h1>Weekly habits</h1><div id="habit-weekly"></div></div>
+		<div id="habit-container"><h1>Monthly habits</h1><div id="habit-monthly"></div></div>
 	</div>
 </div>
 
@@ -119,7 +119,7 @@
 		<div class="habitTitle">{{title}}</div>
 		<div class="completed">{{streak}} {{time}}</div>
 		<div class="switch">
-			<button class="habit-button tick" data-id="{{data}}" id="{{data}}">&#10004;</button>
+			<button class="habit-button tick" data-id="{{data}}" id="{{data}}" {{disabled}}>&#10004;{{status}}</button>
 		</div>
 	</div>
 </script>
@@ -153,7 +153,13 @@ function addContent(category, titlename, timeFrame, streak, dataid, completed){
   var contentTemplate = Handlebars.compile($('#entry-template').text());
 
   var contentElement;
+  var status = '';
+  var disabled = '';
 
+  if(completed){
+      status = "Completed";
+      disabled = "disabled";
+  }
 
     //use switch statement to adjust habit row
   var habitTime;
@@ -180,7 +186,9 @@ function addContent(category, titlename, timeFrame, streak, dataid, completed){
     title: titlename,
     streak: streak,
     data: dataid,
-    time: habitTime
+    time: habitTime,
+	disabled: disabled,
+	status: status
   });
 
 		contentElement.html(newHabit + contentElement.html());
@@ -211,7 +219,7 @@ $(function(){
 
         var i = 0;
         for (var habit in data) {
-          addContent(data[i].category, data[i].title, data[i].timeFrame, data[i].streak, data[i]._id);
+          addContent(data[i].category, data[i].title, data[i].timeFrame, data[i].streak, data[i]._id, data[i].completed);
 
           i++;
         }
@@ -259,6 +267,9 @@ $(function(){
       e.preventDefault();
       var dataid = $(this).data('id');
 
+      $('#'+ dataid).append("Completed");
+      $('#'+ dataid).attr("disabled", disabled);
+
       $.ajax( { url: "/api/user/addStreak",
   		  data:{
           "habitID": dataid
@@ -276,33 +287,6 @@ $(function(){
         }
 
       } );
-  });
-
-  $('body').on('click', '.tick' , function(e){
-
-      e.preventDefault();
-      var dataid = $(this).data('id');
-
-      if(!localStorage.getItem('completed')){
-          populateStorage();
-      }else{
-          setCompleted();
-      }
-      function populateStorage(){
-          localStorage.setItem('completed', 'Completed!');
-          localStorage.setItem('disabled', 'disabled');
-          setCompleted();
-      };
-
-      function setCompleted(){
-          var status = localStorage.getItem('completed');
-          var disabled = localStorage.getItem('disabled');
-
-          $('#'+ dataid).append(status);
-          $('#'+ dataid).attr("disabled", disabled);
-
-      };
-
   });
 
 
