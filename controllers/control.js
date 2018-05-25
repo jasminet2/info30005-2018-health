@@ -187,11 +187,12 @@ module.exports = {
       },
       addStreak: function(req, res){
 
-        Habits.findOneAndUpdate( {_id: req.body.habitID}, {$inc: {"streak": 1}},function(err, habit){
+        Habits.findOneAndUpdate( {_id: req.body.habitID}, {$inc: {"streak": 1}, "modifiedDate": req.body.modifiedDate},function(err, habit){
               if(!err){
                   addpoints();
                   habit.streak++;
                   res.send(habit);
+                  
               } else {
 
                   res.send(err);
