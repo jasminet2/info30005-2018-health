@@ -11,7 +11,6 @@ moment().format();
 
 module.exports = {
 
-
       homepage: function(req, res) {
         var status = {loggedIn: false};
         if(req.session.user){

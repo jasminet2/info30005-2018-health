@@ -148,17 +148,23 @@ var icons = ["https://png.icons8.com/ios/30/27ae60/clock-filled.png",
 			"https://png.icons8.com/ios/30/1abc9c/saving-book-filled.png"];
 
 
-function addContent(category, titlename, timeFrame, streak, dataid, completed){
+function addContent(category, titlename, timeFrame, streak, dataid, completed, lastModified){
 
   var contentTemplate = Handlebars.compile($('#entry-template').text());
 
   var contentElement;
   var status = '';
   var disabled = '';
+  var modifiedDate = new Date(lastModified);
+  var today = new Date();
 
   if(completed){
-      status = "Completed";
-      disabled = "disabled";
+      if (today.getDate() - modifiedDate.getDate()){
+          status = '\u2713';
+	  }else{
+          status = "Completed";
+          disabled = "disabled";
+      }
   } else {
 		status = '\u2713';
 	}
@@ -221,7 +227,7 @@ $(function(){
 
         var i = 0;
         for (var habit in data) {
-          addContent(data[i].category, data[i].title, data[i].timeFrame, data[i].streak, data[i]._id, data[i].completed);
+          addContent(data[i].category, data[i].title, data[i].timeFrame, data[i].streak, data[i]._id, data[i].completed, data[i].lastModified);
 
           i++;
         }
