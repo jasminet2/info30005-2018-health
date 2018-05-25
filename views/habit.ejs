@@ -240,6 +240,7 @@ $(function(){
 
     if(habitValid()){
 
+	// habitDate added
     $.ajax( { url: "/api/user/addhabit",
 		  data:{
         "category": $('#category').val(),
@@ -273,6 +274,7 @@ $(function(){
       $('#'+ dataid).html("Completed");
       $('#'+ dataid).attr("disabled", "disabled");
 
+      //modifiedDate added
       $.ajax( { url: "/api/user/addStreak",
   		  data:{
           	"habitID": dataid,

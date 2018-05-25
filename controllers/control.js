@@ -213,7 +213,7 @@ module.exports = {
       },
       addStreak: function(req, res){
 
-        Habits.findOneAndUpdate( {_id: req.body.habitID}, {$inc: {"streak": 1}, "modifiedDate": req.body.modifiedDate},function(err, habit){
+        Habits.findOneAndUpdate( {_id: req.body.habitID}, {$inc: {"streak": 1}, "lastModified": req.body.modifiedDate},function(err, habit){
               if(!err){
                   addpoints();
                   habit.streak++;
@@ -240,7 +240,6 @@ module.exports = {
         Habits.findById({_id: req.body.habitID}, function(err, habit){
             if(!habit.completed){
                 habit.completed = !habit.completed;
-                habit.lastModified = req.body.modifiedDate;
                 habit.save(function(err){
                     if(err){
                         console.log('Cannot save the data');
