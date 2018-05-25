@@ -145,11 +145,35 @@ module.exports = {
 
 
       },
+
       loadHabit: function(req, res){
 
-        Habits.find({userID: req.session.user.userName},function(err, habit){
-          if(habit && !err){
-              res.send(habit);
+          //* updated *//
+          Habits.find({userID: req.session.user.userName, completed: true},function(err, habit){
+             if(habit && !err){
+                 var currentDate = new Date();
+                 for(var i = 0;; i++){
+                     try{
+                         var dayDiff = currentDate.getDate() - habit[i].lastModified.getDate();
+                         if (dayDiff){
+                             habit[i].completed = !habit[i].completed;
+                             habit[i].save(function(err){
+                                 if(err){
+                                     console.log('ERROR!');
+                                 }
+                             })
+                         }
+                     } catch(e){
+                         break;
+                     }
+                 }
+             }else{
+                 res.send(err);
+             }
+          });
+          Habits.find({userID: req.session.user.userName},function(err, habit){
+            if(habit && !err){
+                res.send(habit);
           } else {
             res.send(err);
           }
@@ -157,6 +181,7 @@ module.exports = {
         });
       },
 
+      // updated
       addHabit: function(req, res) {
 
         var addHabit = new Habits({
@@ -165,7 +190,8 @@ module.exports = {
           "title": req.body.title,
           "timeFrame": req.body.timeFrame,
           "streak": req.body.streak,
-          "userID": req.body.userID
+          "userID": req.body.userID,
+          "lastModified": req.body.habitDate
 
         });
 
@@ -209,9 +235,11 @@ module.exports = {
           });
         };
 
+
         Habits.findById({_id: req.body.habitID}, function(err, habit){
             if(!habit.completed){
                 habit.completed = !habit.completed;
+                habit.lastModified = req.body.modifiedDate;
                 habit.save(function(err){
                     if(err){
                         console.log('Cannot save the data');
@@ -219,22 +247,6 @@ module.exports = {
                 })
             }
         });
-
-        //.newly add function to save the modified date:
-
-        Habits.findById({_id: req.body.habitID}, function(err, habit) {
-            if (!err) {
-                habit.modifiedDate = req.body.modifiedDate;
-                habit.save(function(err){
-                    if(err){
-                        console.log('Cannot save the data');
-                    }
-                })
-            } else {
-                res.send(err);
-            }
-
-        })
 
       },
       removeHabit: function(req, res){
@@ -277,3 +289,7 @@ module.exports = {
 
 
 }
+
+
+
+

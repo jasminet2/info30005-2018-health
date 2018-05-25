@@ -246,7 +246,8 @@ $(function(){
         "title": $('#title').val(),
         "timeFrame": $('#timeframe').val(),
         "streak": 0,
-        "userID": '<%=userinfo.userName%>'
+        "userID": '<%=userinfo.userName%>',
+		"habitDate": document.lastModified
       },
 		  type: "POST",
       success: function(data){
@@ -271,8 +272,6 @@ $(function(){
 
       $('#'+ dataid).html("Completed");
       $('#'+ dataid).attr("disabled", "disabled");
-
-      console.log(document.lastModified);
 
       $.ajax( { url: "/api/user/addStreak",
   		  data:{
