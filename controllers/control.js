@@ -204,7 +204,6 @@ module.exports = {
                     }
                 })
             }
-            console.log(habit.completed);
         }
         );
 

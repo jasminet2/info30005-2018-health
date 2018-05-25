@@ -45,9 +45,9 @@
 					<li><span class="usernamep label">Username:</span> <span class="usernamep2"><%=userinfo.userName%></span></li>
 				</ul>
 			</div>
-			<div class="profilePic"><img src='images/face.jpg'></div>
+			<div class="profilePic"><img src='images/user.pnggu'></div>
 
-			<div class="userlevel"><input type="button" class="levelup" value="Level up"></input></div>
+			<div class="userlevel"><button class="levelup">Level up </button></div>
 			<div class="point-display">
       		<div class="userPoints">
 			  <div class="points">
@@ -267,8 +267,8 @@ $(function(){
       e.preventDefault();
       var dataid = $(this).data('id');
 
-      $('#'+ dataid).append("Completed");
-      $('#'+ dataid).attr("disabled", disabled);
+      $('#'+ dataid).html("Completed");
+      $('#'+ dataid).attr("disabled", "disabled");
 
       $.ajax( { url: "/api/user/addStreak",
   		  data:{
