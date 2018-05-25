@@ -3,6 +3,12 @@ var mongoose = require('mongoose');
 var Users = mongoose.model('user');
 var Habits = mongoose.model('habit');
 
+
+/*additional module to calculate the time difference, don't know it is useful or not*/
+var moment = require('moment');
+moment().format();
+
+
 module.exports = {
 
 
@@ -149,9 +155,8 @@ module.exports = {
           }
 
         });
-
-
       },
+
       addHabit: function(req, res) {
 
         var addHabit = new Habits({
@@ -209,12 +214,27 @@ module.exports = {
                 habit.completed = !habit.completed;
                 habit.save(function(err){
                     if(err){
-                        console.log('ERROR!');
+                        console.log('Cannot save the data');
                     }
                 })
             }
-        }
-        );
+        });
+
+        //.newly add function to save the modified date:
+
+        Habits.findById({_id: req.body.habitID}, function(err, habit) {
+            if (!err) {
+                habit.modifiedDate = req.body.modifiedDate;
+                habit.save(function(err){
+                    if(err){
+                        console.log('Cannot save the data');
+                    }
+                })
+            } else {
+                res.send(err);
+            }
+
+        })
 
       },
       removeHabit: function(req, res){

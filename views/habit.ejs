@@ -45,7 +45,7 @@
 					<li><span class="usernamep label">Username:</span> <span class="usernamep2"><%=userinfo.userName%></span></li>
 				</ul>
 			</div>
-			<div class="profilePic"><img src='images/user.pnggu'></div>
+			<div class="profilePic"><img src='images/user.png'></div>
 
 			<div class="userlevel"><button class="levelup">Level up </button></div>
 			<div class="point-display">
@@ -272,9 +272,12 @@ $(function(){
       $('#'+ dataid).html("Completed");
       $('#'+ dataid).attr("disabled", "disabled");
 
+      console.log(document.lastModified);
+
       $.ajax( { url: "/api/user/addStreak",
   		  data:{
-          "habitID": dataid
+          	"habitID": dataid,
+			"modifiedDate": document.lastModified
         },
   		  type: "POST",
         success: function(data){
@@ -287,6 +290,8 @@ $(function(){
         error: function(xhr, status, err){
           console.log(err);
         }
+
+
 
       } );
   });

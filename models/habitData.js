@@ -1,5 +1,7 @@
 var mongoose  = require('mongoose');
 
+
+
 var habitSchema = mongoose.Schema (
   {
 
@@ -8,7 +10,8 @@ var habitSchema = mongoose.Schema (
   "timeFrame": Number,
   "streak": Number,
   "userID": String,
-  "completed": {type: Boolean, default: false}
+  "completed": {type: Boolean, default: false},
+  "modifiedDate": {type: Date, default: new Date("<2018-05-01>")}
   });
 
 
