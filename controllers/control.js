@@ -13,6 +13,7 @@ module.exports = {
 
       homepage: function(req, res) {
         var status = {loggedIn: false};
+        
         if(req.session.user){
           status.loggedIn = true;
           res.render('index.ejs', {status});
@@ -217,7 +218,7 @@ module.exports = {
                   addpoints();
                   habit.streak++;
                   res.send(habit);
-                  
+
               } else {
 
                   res.send(err);
@@ -288,7 +289,3 @@ module.exports = {
 
 
 }
-
-
-
-

@@ -117,7 +117,7 @@
 		<input type="button" class="habit-button remove" data-id="{{data}}" value="Remove">
 		<div class="icon"><img src="{{imgURL}}"></div>
 		<div class="habitTitle">{{title}}</div>
-		<div class="completed">{{streak}} {{time}}</div>
+		<div class="completed"><span class="streak">{{streak}}</span> {{time}}</div>
 		<div class="switch">
 			<button class="habit-button tick" data-id="{{data}}" id="{{data}}" {{disabled}}>{{status}}</button>
 		</div>
@@ -171,21 +171,20 @@ function addContent(category, titlename, timeFrame, streak, dataid, completed, l
 
     //use switch statement to adjust habit row
   var habitTime;
-    switch (timeFrame) {
+  switch (timeFrame) {
 	case 1:
 		contentElement = $('#habit-daily');
-    habitTime = "Times";
+		habitTime = "Days";
 		break;
 	case 2:
 		contentElement = $('#habit-weekly');
-    habitTime = "Times";
+		habitTime = "Weeks";
 		break;
 	case 3:
 		contentElement = $('#habit-monthly');
-    habitTime = "Times";
+		habitTime = "Months";
 		break;
 	default:
-    habitTime = "Times";
 		contentElement = $('#habit-daily');
   }
 
@@ -195,8 +194,8 @@ function addContent(category, titlename, timeFrame, streak, dataid, completed, l
     streak: streak,
     data: dataid,
     time: habitTime,
-	disabled: disabled,
-	status: status
+		disabled: disabled,
+		status: status
   });
 
 		contentElement.html(newHabit + contentElement.html());
@@ -219,7 +218,7 @@ $(function(){
     //modal Close
 
   };
-	
+
   function loadUserHabits(){
     $.ajax( { url: "/api/user/loadHabit",
 		  type: "GET",
@@ -254,7 +253,7 @@ $(function(){
         "timeFrame": $('#timeframe').val(),
         "streak": 0,
         "userID": '<%=userinfo.userName%>',
-		"habitDate": document.lastModified
+				"habitDate": document.lastModified
       },
 		  type: "POST",
       success: function(data){
@@ -284,12 +283,12 @@ $(function(){
       $.ajax( { url: "/api/user/addStreak",
   		  data:{
           	"habitID": dataid,
-			"modifiedDate": document.lastModified
+						"modifiedDate": document.lastModified
         },
   		  type: "POST",
         success: function(data){
           //var currentStreak = $('.habitStatus[data-id='+dataid+']').data('str');
-          $('.habitStatus[data-id='+dataid+']').find('.completed').text(data.streak+" Times");
+          $('.habitStatus[data-id='+dataid+']').find('.streak').text(data.streak);
 
           updateUserData();
 
