@@ -13,7 +13,7 @@ module.exports = {
 
       homepage: function(req, res) {
         var status = {loggedIn: false};
-        
+
         if(req.session.user){
           status.loggedIn = true;
           res.render('index.ejs', {status});
@@ -150,10 +150,10 @@ module.exports = {
 
           //* updated *//
           Habits.find({userID: req.session.user.userName, completed: true},function(err, habit){
+             var i=0;
              if(habit && !err){
                  var currentDate = new Date();
-                 for(var i = 0;; i++){
-                     try{
+                 for(var habits in habit){
                          var dayDiff = currentDate.getDate() - habit[i].lastModified.getDate();
                          if (dayDiff){
                              habit[i].completed = !habit[i].completed;
@@ -163,9 +163,7 @@ module.exports = {
                                  }
                              })
                          }
-                     } catch(e){
-                         break;
-                     }
+                     i++;
                  }
              }else{
                  res.send(err);
