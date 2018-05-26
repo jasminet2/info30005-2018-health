@@ -154,15 +154,38 @@ module.exports = {
              if(habit && !err){
                  var currentDate = new Date();
                  for(var habits in habit){
-                         var dayDiff = currentDate.getDate() - habit[i].lastModified.getDate();
-                         if (dayDiff){
-                             habit[i].completed = !habit[i].completed;
-                             habit[i].save(function(err){
-                                 if(err){
-                                     console.log('ERROR!');
-                                 }
-                             })
+                         switch(habit[i].timeframe){
+                           case 1:
+                           var dayDiff = currentDate.getDate() - habit[i].lastModified.getDate();
+                           if(dayDiff){
+                            habit[i].completed = !habit[i].completed;
+
+                           }
+                           break;
+                           case 2:
+                           var dayDiff = currentDate.getDate() - habit[i].lastModified.getDate();
+                           if(dayDiff>=7){
+                            habit[i].completed = !habit[i].completed;
+
+                           }
+                           break;
+                           case 3:
+                           var monthDiff = currentDate.getMonth() - habit[i].lastModified.getMonth();
+                           if(monthDiff){
+                            habit[i].completed = !habit[i].completed;
+
+                           }
+                           break;
+                           default:
+                         	 console.log("ERROR");
+
                          }
+
+                         habit[i].save(function(err){
+                             if(err){
+                                 console.log('ERROR!');
+                             }
+                         })
                      i++;
                  }
              }else{
