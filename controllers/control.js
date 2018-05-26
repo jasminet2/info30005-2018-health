@@ -149,35 +149,35 @@ module.exports = {
       loadHabit: function(req, res){
 
           //* updated *//
-          Habits.find({userID: req.session.user.userName, completed: true},function(err, habit){
+          Habits.find({userID: req.session.user.userName},function(err, habit){
              var i=0;
+             //if completed incase no completed
              if(habit && !err){
-                console.log(moment().date());
-                 var currentDate = new Date();
+
+                 //prevWeek =  moment(habit[i].lastModified).isBefore(moment().date());
+                 var currentDate  = moment().format('YYYYMMDD');
+                 var currentWeek  = moment().format('YYYYww');
+                 var currentMonth = moment().format('YYYYMM');
+
+                 var lastDate = moment(habit[i].lastModified).format('YYYYMMDD');
+                 var lastWeek = moment(habit[i].lastModified).format('YYYYww');
+                 var lastMonth = moment(habit[i].lastModified).format('YYYYMM');
+
                  for(var habits in habit){
                          switch(habit[i].timeFrame){
                            case 1:
-                           var dayDiff = currentDate.getDate() - habit[i].lastModified.getDate();
-                           if(dayDiff){
+                           if(currentDate>lastDate){
                             habit[i].completed = !habit[i].completed;
-
-
                            }
                            break;
-                           console.log("BREAK ERROR");
                            case 2:
-                           var dayDiff = currentDate.getDate() - habit[i].lastModified.getDate();
-                           if(dayDiff>=7){
+                           if(currentWeek>lastWeek){
                             habit[i].completed = !habit[i].completed;
-
                            }
                            break;
-                           console.log("BREAK ERROR");
                            case 3:
-                           var monthDiff = currentDate.getMonth() - habit[i].lastModified.getMonth();
-                           if(monthDiff){
+                           if(currentMonth>lastMonth){
                             habit[i].completed = !habit[i].completed;
-
                            }
                            break;
                            default:
@@ -191,19 +191,13 @@ module.exports = {
                              }
                          })
                      i++;
+
                  }
+                 res.send(habit);
              }else{
                  res.send(err);
              }
           });
-          Habits.find({userID: req.session.user.userName},function(err, habit){
-            if(habit && !err){
-                res.send(habit);
-          } else {
-            res.send(err);
-          }
-
-        });
       },
 
       // updated
@@ -216,7 +210,7 @@ module.exports = {
           "timeFrame": req.body.timeFrame,
           "streak": req.body.streak,
           "userID": req.body.userID,
-          "lastModified": req.body.habitDate
+          "lastModified": moment()
 
         });
 
@@ -238,7 +232,7 @@ module.exports = {
       },
       addStreak: function(req, res){
 
-        Habits.findOneAndUpdate( {_id: req.body.habitID}, {$inc: {"streak": 1}, "lastModified": req.body.modifiedDate},function(err, habit){
+        Habits.findOneAndUpdate( {_id: req.body.habitID}, {$inc: {"streak": 1}, "lastModified": moment()},function(err, habit){
               if(!err){
                   addpoints();
                   habit.streak++;

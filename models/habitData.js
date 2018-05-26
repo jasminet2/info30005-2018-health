@@ -12,7 +12,7 @@ var habitSchema = mongoose.Schema (
   "streak": Number,
   "userID": String,
   "completed": {type: Boolean, default: false},
-  "lastModified": {type: Date, default: new Date("2016-05-18T16:00:00Z")}
+  "lastModified": {type: Date, default: new Date()}
   });
 
 
