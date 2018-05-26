@@ -152,16 +152,19 @@ module.exports = {
           Habits.find({userID: req.session.user.userName, completed: true},function(err, habit){
              var i=0;
              if(habit && !err){
+                console.log(moment().date());
                  var currentDate = new Date();
                  for(var habits in habit){
-                         switch(habit[i].timeframe){
+                         switch(habit[i].timeFrame){
                            case 1:
                            var dayDiff = currentDate.getDate() - habit[i].lastModified.getDate();
                            if(dayDiff){
                             habit[i].completed = !habit[i].completed;
 
+
                            }
                            break;
+                           console.log("BREAK ERROR");
                            case 2:
                            var dayDiff = currentDate.getDate() - habit[i].lastModified.getDate();
                            if(dayDiff>=7){
@@ -169,6 +172,7 @@ module.exports = {
 
                            }
                            break;
+                           console.log("BREAK ERROR");
                            case 3:
                            var monthDiff = currentDate.getMonth() - habit[i].lastModified.getMonth();
                            if(monthDiff){
@@ -177,7 +181,7 @@ module.exports = {
                            }
                            break;
                            default:
-                         	 console.log("ERROR");
+                         	 console.log("default error");
 
                          }
 
