@@ -128,9 +128,9 @@ color: white;
 .section-about h2, .success p{
 
     margin: auto;
-    margin-bottom: 1.3em;
+    margin-bottom: 0.8em;
     font-weight: 400;
-    font-size: 1.3em;
+    font-size: 1.2em;
     font-family: "Cabin", sans-serif;
     width: 80%;
 
@@ -158,7 +158,7 @@ color: white;
 width: 80%;
 text-align: center;
 margin: auto;
-    font-size: 0.75em;
+    font-size: 0.7em;
 font-weight: 300;
 font-family: "Lato", sans-serif;
     opacity: 0.8;
@@ -238,10 +238,11 @@ text-align: left;
 }
 
 .habit-div img{
-    height: 85%;
+    height:40%;
     width: auto;
     border-radius: 10px 10px 0 0;
     opacity: 0.8;
+    overflow: hidden;
 }
 
 
@@ -274,7 +275,7 @@ html {
 .full-section{
 
 height: 100vh;
-overflow: auto;
+    overflow: hidden;
 
 }
 
@@ -855,11 +856,12 @@ list-style: none;
 
 .habitTitle {
     text-transform: uppercase;
-    font-size: 1.7em;
+    font-size: 1.5em;
     font-weight: 900;
 	color: white;
     min-width: 1.9fr;
     max-width: 1.9fr;
+    overflow: hidden;
 
 
 
@@ -975,7 +977,8 @@ list-style: none;
         height: 50vh;
     }
 
-
-
+    .aboutus{
+        width: 90%;
+    }
 
 }
