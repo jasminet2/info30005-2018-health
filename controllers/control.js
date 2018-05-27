@@ -151,10 +151,9 @@ module.exports = {
           //* updated *//
           Habits.find({userID: req.session.user.userName},function(err, habit){
              var i=0;
-             //if completed incase no completed
-             if(habit && !err){
 
-                 //prevWeek =  moment(habit[i].lastModified).isBefore(moment().date());
+             if(habit[0] && !err){
+
                  var currentDate  = moment().format('YYYYMMDD');
                  var currentWeek  = moment().format('YYYYww');
                  var currentMonth = moment().format('YYYYMM');
@@ -164,6 +163,7 @@ module.exports = {
                  var lastMonth = moment(habit[i].lastModified).format('YYYYMM');
 
                  for(var habits in habit){
+
                          switch(habit[i].timeFrame){
                            case 1:
                            if(currentDate>lastDate){
@@ -193,6 +193,7 @@ module.exports = {
                      i++;
 
                  }
+
                  res.send(habit);
              }else{
                  res.send(err);
