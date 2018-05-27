@@ -15,9 +15,9 @@ text-align: center;
 
 }
 
-#welcome h1, .form h1 {
+#welcome h1, .form h1 .success h1, #habit-container h1{
     font-family: 'Cabin';
-    font-size: 1.9em;
+    font-size: 2em;
     margin-bottom: 20px;
     position: relative;
     font-weight: 700;
@@ -125,13 +125,13 @@ color: white;
 
 
 
-.section-about h2{
+.section-about h2, .success p{
 
     margin: auto;
-    margin-bottom: 1.5em;
+    margin-bottom: 1.3em;
     font-weight: 400;
-  font-size: 27px;
-    font-family: "cabin";
+    font-size: 1.3em;
+    font-family: "Cabin", sans-serif;
     width: 80%;
 
 }
@@ -149,22 +149,19 @@ color: white;
 
 }
 .aboutus h3{
-    font-size: 0.8em;
-    text-transform: uppercase;
-    color: #86c232;
-    font-weight: 800;
-    margin: auto;
-    margin-bottom: 15px;
-}
+     text-transform: uppercase;
+     margin-bottom: 0.5em;
+ }
 
 .aboutus p{
 
 width: 80%;
 text-align: center;
 margin: auto;
+    font-size: 0.75em;
 font-weight: 300;
-font-family: "lato";
-    opacity: 0.7;
+font-family: "Lato", sans-serif;
+    opacity: 0.8;
 
 
 }
@@ -208,7 +205,7 @@ color:white;
 
 
 .habit-div li{
-font-family: "cabin";
+font-family: "Cabin", sans-serif;
 font-size: 0.8em;
     font-weight: 300;
 margin-bottom: 1.2em;
@@ -295,8 +292,8 @@ text-decoration: none;
 
 }
 
-.section-headers {
-
+.section-headers, .aboutus h3 {
+    display: block;
     margin: 2em 0;
     font-weight: 900;
     text-align: center;
@@ -334,7 +331,7 @@ p {
 .butt, .butt2{
 
 display: inline-block;
-    font-family: "lato";
+    font-family: "Lato", sans-serif;
 border: 0;
 padding: 0.35em 1.2em;
 color: #DDD;
@@ -425,7 +422,7 @@ text-align: center;
     font-size: 1em;
     font-weight: 900;
     margin: 0;
-    font-family: 'lato';
+    font-family: 'Lato', sans-serif;
 }
 
 .close:hover, .close:focus {
@@ -437,7 +434,7 @@ text-align: center;
 #habitmsg {
 
 color:white;
-font-family: 'Lato';
+font-family: 'Lato', sans-serif;
 font-size: 1.5em;
 
 }
@@ -454,29 +451,28 @@ input[type="submit"]{
   margin: auto;
   text-align: center;
   width: 30%;
+    font-family: 'Lato', sans-serif;
 
 }
 
 .form .label {
-    font-weight: 700;
+    font-size: 0.7em;
     font-style: normal;
     opacity: 1;
-    font-family: 'Lato';
     text-transform: uppercase;
 }
 
 .form p{
     font-weight: 700;
     font-style: italic;
-    font-family: 'Lato';
-    font-size:0.7em;
+    font-size: 0.8em;
     color: #fff;
-    opacity: 0.8;
+    opacity: 0.9;
 }
 
-.form h1{
+.form h1, .success h1{
     text-transform: uppercase;
-    font-size: 1.5em;
+    margin-bottom: 1em;
     color: #86c232;
 }
 
@@ -489,7 +485,7 @@ input[type="submit"]{
 .input-text, .input-email, .input-password{
 
 	background: rgba(0,0,0, 0.9);
-	border: 2px solid #333;
+	border: 2px solid #DDDDDD;
 	font-family: 'Lato', sans-serif;
 	color: white;
 	font-size: 0.8em;
@@ -526,22 +522,14 @@ input[type="submit"]{
 
   margin: auto;
   text-align: center;
-  width: 30%;
+  width: 80%;
   margin-top: 30vh;
 
 }
 
-.success h1{
-
-  color: #4CAF50;
-  font-size: 3em;
-
-}
 
 .success p{
-
-  font-size: 0.8em;
-  margin-bottom: 7%;
+    margin-bottom: 5%;
 
 }
 
@@ -611,7 +599,7 @@ list-style: none;
     color: white;
     width: 70%;
     font-size: 1.5em;
-    font-family: 'cabin', sans-serif;
+    font-family: 'Cabin', sans-serif;
     text-transform: uppercase;
     border-radius: 5px;
     border: 0;
@@ -645,7 +633,7 @@ list-style: none;
     margin-top: 15%;
     background-color: #222629;
     border-radius: 5px;
-    font-family: 'Cabin';
+    font-family: 'Cabin', sans-serif;
 }
 
 .point1{
@@ -661,7 +649,7 @@ list-style: none;
 .point2{
     margin: auto;
     font-weight: 800;
-    font-family: 'Montserrat';
+    font-family: 'Montserrat', sans-serif;
     font-size: 2.5em;
 }
 
@@ -705,14 +693,13 @@ list-style: none;
     overflow-x: hidden;
 }
 
-.category, .input, .button, .icon, .switch, .completed {
+.category, .duration, .input, .button-container{
 
     display: inline-block;
 }
 
-.habitTitle{
-    display: inline-grid;
-}
+
+
 
 
 #today, #insert, .habit-tracker{
@@ -740,10 +727,10 @@ list-style: none;
 #today{
     grid-area: today;
 	font-weight: 700;
-	font-size: 2em;
+	font-size: 2.4em;
     text-align: center;
     width: 100%;
-    font-family: "cabin";
+    font-family: "Cabin",sans-serif;
     text-transform: uppercase;
 
 }
@@ -759,16 +746,23 @@ list-style: none;
     height: auto;
 }
 
+
+.habit-tracker{
+    grid-area: habit-tracker;
+    padding-bottom: 2em;
+    margin: auto;
+}
+
 #insert h2{
     margin: 0.4em 0 0.8em 1em;
-    opacity: 0.8;
-    font-family: "cabin";
-    font-size: 2.4em;
+    font-style: italic;
+    font-family: "Cabin";
+    font-size: 2em;
     font-weight: bold;
     color: white;
 }
 
-#insert .label{
+#insert .label, .completed .time{
     font-weight: bold;
     font-size: 1.1em;
     text-transform: uppercase;
@@ -800,12 +794,12 @@ list-style: none;
 
 
 #addHabit{
+    margin-left: 5em;
     text-align: center;
     text-transform: uppercase;
 	padding: 10px;
 	border: 0;
 	border-radius: 5px;
-    margin-left: 3em;
 	background: #86c232;
     font-size: 1.2em;
     color: white;
@@ -821,73 +815,67 @@ list-style: none;
 
 
 #habit-container{
-    border-radius: 5px;
-    width: 95%;
+    width: 100%;
     margin: 2% auto 0 auto;
     padding: 0 1.5em 1.5em 1.5em;
     color: white;
 
 }
 
-.habit-tracker{
-    grid-area: habit-tracker;
-    padding-bottom: 2em;
-
-}
 
 #habit-container h1{
     width: 100%;
     background-color: #222629;
     border: 0;
     border-radius:5px;
-    display: inline-block;
-    font-size: 2em;
-    text-align: center;
+    display: block;
     text-transform: uppercase;
-    font-family: 'Cabin', sans-serif;
     font-weight: bold;
+    padding: 5px 1em;
+
 }
-
-
-
-.icon{
-	margin: 0.5em;
-    position:relative;
-}
-
 .habitStatus{
-
-
-    margin-left: auto;
-    margin-right: auto;
+    display: grid;
+    grid-template-columns: 0.5fr 0.5fr 2fr 3fr 1.25fr;
+    grid-column-gap: 5px;
+    margin:0.5em auto;
     width: 95%;
-	padding-top: 5px;
 	border: 0;
-	margin-top: 0.5em;
 	border-radius: 5px;
 	background-color: rgba(0,0,0, 0.3);
     font-family: "lato", sans-serif;
 
 }
 
-.habitTitle {
-    text-transform: uppercase;
-    margin-left: 2em;
-    font-size: 1.3em;
-    font-weight: 900;
-	color: white;
-    min-width: 10em;
-    max-width: 10em;
-    overflow: hidden;
+.icon{
+    margin: 0.5em;
+    position:relative;
 }
 
-.completed{
-    position:relative;
-    font-size: 1.2em;
-    font-weight: 700;
-	margin-left: 2em;
-    color: #DDD;
 
+.habitTitle {
+    text-transform: uppercase;
+    font-size: 1.7em;
+    font-weight: 900;
+	color: white;
+    min-width: 1.9fr;
+    max-width: 1.9fr;
+
+
+
+}
+.habitTitle, .completed{
+    overflow: hidden;
+    padding-top: 0.3em;
+
+}
+.completed > .streak{
+    margin: 0 10px;
+    position:relative;
+    font-size: 2em;
+    font-weight: 900;
+    color: white;
+    max-width: 8em;
 }
 
 .remove{
@@ -904,11 +892,10 @@ list-style: none;
 .habit-button {
     margin: 0.5em;
     display: inline-block;
-    font-family: "cabin", sans-serif;
+    font-family: "Cabin", sans-serif;
     padding: 5px  10px;
     border-radius: 5px;
-    font-size: 1em;
-    margin-right: 10px;
+    font-size: 1.2em;
     border-style: hidden;
     text-transform: uppercase;
 }
@@ -918,72 +905,77 @@ list-style: none;
 
 }
 
-.tick:hover {
-
-    background:linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,.2)) rgba(76,175,80, 0.8);
-
-
+.tick:disabled{
+    opacity: 0.7;
 }
 
 .switch{
     float: right;
 }
 
-button:disabled{
-    opacity: 0.7;
-}
+/*responsive design - iphone 6,7,8*/
 
+@media only screen and (min-device-width : 375px) and (max-device-width: 600px){
 
-/*responsive design*/
-
-@media only screen and (max-width: 600px){
-
-    #today, #insert > h2 {
+    #today, #insert h2, .habitStatus h1 {
         font-size: 1.8em;
         font-family: "Lato", sans-serif;
     }
 
-    .label{
-        padding: 0 1em;
+    #insert{
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-auto-rows: minmax(2em, auto);
+        grid-row-gap: 10px;
+        padding: 5px;
+        grid-template-areas:
+            "header header"
+            "category timeframe"
+            "input input"
+            "button button";
+
     }
 
-    #category,#timeframe,input{
-        display: block;
+    #insert h2{
+        grid-area: header;
     }
 
-    input[type="text"]{
-        width: 100px;
-
-    }
-    .bootstrap-select{
-        width: 100px;
+    #insert .category {
+        grid-area: category;
     }
 
-    button, .button {
-        display:block;
-        margin-top: 0.4em;
+    #insert .input{
+        grid-area: input;
+    }
+
+    #insert .button-container{
+        grid-area: button;
         margin-left: auto;
         margin-right: auto;
 
     }
 
+    #insert #addHabit{
+        margin-right: 0;
+    }
+
+
+
+
+
+
     .grid-container {
-        margin: 5px 10px;
+        margin: 2em auto;
         display:grid;
-        grid-template-columns: 1fr;
         grid-auto-rows: minmax(2em, auto);
-        grid-template-areas:
-                "today"
-                "head"
-                "daily"
-                "weekly"
-                "monthly";
         grid-row-gap: 20px;
     }
 
-    .homepage{
+    .full-section{
         height: 50vh;
     }
+
+
 
 
 }

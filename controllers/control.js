@@ -167,18 +167,18 @@ module.exports = {
 
                          switch(habit[i].timeFrame){
                            case 1:
-                           if(currentDate>lastDate){
+                           if(currentDate > lastDate){
                                 habit[i].completed = false;
                            }
                            break;
                            case 2:
                            if(currentWeek>lastWeek){
-                            habit[i].completed = false;
+                               habit[i].completed = false;
                            }
                            break;
                            case 3:
                            if(currentMonth>lastMonth){
-                            habit[i].completed = false;
+                               habit[i].completed = false;
                            }
                            break;
                            default:

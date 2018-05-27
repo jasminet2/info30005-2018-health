@@ -18,9 +18,6 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/js/bootstrap-select.min.js"></script>
 <!-- handlebars.js -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.10/handlebars.js"></script>
-<!-- moment.js-->
-	<script src="https://cdn.jsdelivr.net/npm/moment@2.22.1/moment.min.js"></script>
-
 
 
 </head>
@@ -81,6 +78,8 @@
 				<option value= "4">Sports</option>
 				<option value= "5">Study</option>
 			</select>
+		</div>
+		<div class="duration">
 			<p class="label">Duration</p>
 			<select class="selectpicker category show-tick" id="timeframe">
 				<option value= '1' >Daily</option>
@@ -92,7 +91,7 @@
 			<p class="label">Habit Title</p>
 			<input class="habit-input-text" type = "text" id = "title" value="" placeholder="Type Here">
 		</div>
-		<div class = "button"><button id= "addHabit">Add Habit</button></div>
+		<div class="button-container"><button id= "addHabit">Add Habit</button></div>
 	</div>
 	<div class="habit-tracker">
 		<div id="habit-container"><h1>Daily habits</h1><div id="habit-daily"></div></div>
@@ -119,7 +118,7 @@
 		<input type="button" class="habit-button remove" data-id="{{data}}" value="Remove">
 		<div class="icon"><img src="{{imgURL}}"></div>
 		<div class="habitTitle">{{title}}</div>
-		<div class="completed"><span class="streak">{{streak}}</span> {{time}}</div>
+		<div class="completed"><span class="streak">{{streak}}</span> <span class="time">{{time}}</span> </div>
 		<div class="switch">
 			<button class="habit-button tick" data-id="{{data}}" id="{{data}}" {{disabled}}>{{status}}</button>
 		</div>
@@ -128,7 +127,6 @@
 
 
 <script>
-	moment().format();
 
     var d = new Date();
     function formatDate(date) {
@@ -152,7 +150,7 @@ var icons = ["https://png.icons8.com/ios/30/27ae60/clock-filled.png",
 			"https://png.icons8.com/ios/30/1abc9c/saving-book-filled.png"];
 
 
-function addContent(category, titlename, timeFrame, streak, dataid, completed, lastModified){
+function addContent(category, titlename, timeFrame, streak, dataid, completed){
 
   var contentTemplate = Handlebars.compile($('#entry-template').text());
 
@@ -162,43 +160,24 @@ function addContent(category, titlename, timeFrame, streak, dataid, completed, l
   var contentElement;
   var status = '';
   var disabled = '';
-  var modifiedDate = lastModified;
-  var currentDate  = moment().format('YYYYMMDD');
-  var currentWeek  = moment().format('YYYYww');
-  var currentMonth = moment().format('YYYYMM');
-
-  var lastDate = moment(modifiedDate).format('YYYYMMDD');
-  var lastWeek = moment(modifiedDate).format('YYYYww');
-  var lastMonth = moment(modifiedDate).format('YYYYMM');
 
 
 
-  console.log(modifiedDate);
-  console.log(completed);
 
     //use switch statement to adjust habit row
   var habitTime;
   switch (timeFrame) {
-	case 1:
+	  case 1:
 		contentElement = $('#habit-daily');
-        if(currentDate > lastDate){
-            completed = false;
-        }
-		habitTime = "Days";
+		habitTime = "Day(s)";
 		break;
 	case 2:
 		contentElement = $('#habit-weekly');
-		if(currentWeek > lastWeek){
-		    completed = false;
-		}
-		habitTime = "Weeks";
+		habitTime = "Week(s)";
 		break;
-	case 3:
+	  case 3:
 		contentElement = $('#habit-monthly');
-		if(currentMonth > lastMonth){
-		    completed = false;
-		}
-		habitTime = "Months";
+		habitTime = "Month(s)";
 		break;
 	default:
 		contentElement = $('#habit-daily');
@@ -206,7 +185,7 @@ function addContent(category, titlename, timeFrame, streak, dataid, completed, l
 
   }
     if(completed){
-        status = "Completed";
+        status = "Done";
         disabled = "disabled";
 
     } else {
@@ -298,14 +277,13 @@ $(function(){
       e.preventDefault();
       var dataid = $(this).data('id');
 
-      $('#'+ dataid).html("Completed");
+      $('#'+ dataid).html("Done");
       $('#'+ dataid).attr("disabled", "disabled");
 
       //modifiedDate added
       $.ajax( { url: "/api/user/addStreak",
   		  data:{
-          	"habitID": dataid,
-						//"modifiedDate": document.lastModified
+          	"habitID": dataid
         },
   		  type: "POST",
         success: function(data){
