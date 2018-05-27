@@ -158,7 +158,7 @@ color: white;
 width: 80%;
 text-align: center;
 margin: auto;
-    font-size: 0.75em;
+    font-size: 0.65em;
 font-weight: 300;
 font-family: "Lato", sans-serif;
     opacity: 0.8;
@@ -915,10 +915,15 @@ list-style: none;
 
 /*responsive design - iphone 6,7,8*/
 
-@media only screen and (min-device-width : 375px) and (max-device-width: 600px){
+@media only screen and (max-device-width: 800px){
 
     #today, #insert h2, .habitStatus h1 {
-        font-size: 1.8em;
+        font-size: 1.5em;
+        font-family: "Lato", sans-serif;
+    }
+
+    #welcome h1, .form h1 .success h1, #habit-container h1{
+        font-size:1.8em;
         font-family: "Lato", sans-serif;
     }
 
@@ -959,11 +964,6 @@ list-style: none;
         margin-right: 0;
     }
 
-
-
-
-
-
     .grid-container {
         margin: 2em auto;
         display:grid;
@@ -976,6 +976,5 @@ list-style: none;
     }
 
 
-
-
 }
+
