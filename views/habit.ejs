@@ -152,7 +152,7 @@ var icons = ["https://png.icons8.com/ios/30/27ae60/clock-filled.png",
 			"https://png.icons8.com/ios/30/1abc9c/saving-book-filled.png"];
 
 
-function addContent(category, titlename, timeFrame, streak, dataid, completed, lastModified){
+function addContent(category, titlename, timeFrame, streak, dataid, completed){
 
   var contentTemplate = Handlebars.compile($('#entry-template').text());
 
@@ -160,57 +160,33 @@ function addContent(category, titlename, timeFrame, streak, dataid, completed, l
 
 
   var contentElement;
-  var status = '';
+  var status = '\u2713';
   var disabled = '';
-  var modifiedDate = lastModified;
-  var currentDate  = moment().format('YYYYMMDD');
-  var currentWeek  = moment().format('YYYYww');
-  var currentMonth = moment().format('YYYYMM');
-
-  var lastDate = moment(modifiedDate).format('YYYYMMDD');
-  var lastWeek = moment(modifiedDate).format('YYYYww');
-  var lastMonth = moment(modifiedDate).format('YYYYMM');
-
-
-
-  console.log(modifiedDate);
-  console.log(completed);
 
     //use switch statement to adjust habit row
   var habitTime;
+	console.log(completed);
   switch (timeFrame) {
 	case 1:
 		contentElement = $('#habit-daily');
-        if(currentDate > lastDate){
-            completed = false;
-        }
 		habitTime = "Days";
 		break;
 	case 2:
 		contentElement = $('#habit-weekly');
-		if(currentWeek > lastWeek){
-		    completed = false;
-		}
 		habitTime = "Weeks";
 		break;
 	case 3:
 		contentElement = $('#habit-monthly');
-		if(currentMonth > lastMonth){
-		    completed = false;
-		}
 		habitTime = "Months";
 		break;
 	default:
 		contentElement = $('#habit-daily');
-
 
   }
     if(completed){
         status = "Completed";
         disabled = "disabled";
 
-    } else {
-        status = '\u2713';
     }
 
   var newHabit = contentTemplate({
@@ -249,7 +225,7 @@ $(function(){
 
         var i = 0;
         for (var habit in data) {
-          addContent(data[i].category, data[i].title, data[i].timeFrame, data[i].streak, data[i]._id, data[i].completed, data[i].lastModified);
+          addContent(data[i].category, data[i].title, data[i].timeFrame, data[i].streak, data[i]._id, data[i].completed);
 
           i++;
         }
@@ -431,7 +407,7 @@ $(function(){
 
   });
 
-	
+
 
 
   $('.modal').on('click', function(){

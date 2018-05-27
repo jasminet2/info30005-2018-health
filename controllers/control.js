@@ -155,30 +155,35 @@ module.exports = {
 
              if(habit[0] && !err){
 
-                 var currentDate  = moment().format('YYYYMMDD');
-                 var currentWeek  = moment().format('YYYYww');
-                 var currentMonth = moment().format('YYYYMM');
+                 var currentDate  = parseInt(moment().format('YYYYMMDD'));
+                 var currentWeek  = parseInt(moment().format('YYYYww'));
+                 var currentMonth = parseInt(moment().format('YYYYMM'));
 
-                 var lastDate = moment(habit[i].lastModified).format('YYYYMMDD');
-                 var lastWeek = moment(habit[i].lastModified).format('YYYYww');
-                 var lastMonth = moment(habit[i].lastModified).format('YYYYMM');
+
 
                  for(var habits in habit){
+
+                   var lastDate = parseInt(moment(habit[i].lastModified).format('YYYYMMDD'));
+                   var lastWeek = parseInt(moment(habit[i].lastModified).format('YYYYww'));
+                   var lastMonth = parseInt(moment(habit[i].lastModified).format('YYYYMM'));
 
                          switch(habit[i].timeFrame){
                            case 1:
                            if(currentDate>lastDate){
                                 habit[i].completed = false;
+
                            }
                            break;
                            case 2:
                            if(currentWeek>lastWeek){
                             habit[i].completed = false;
+
                            }
                            break;
                            case 3:
                            if(currentMonth>lastMonth){
                             habit[i].completed = false;
+
                            }
                            break;
                            default:
