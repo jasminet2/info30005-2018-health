@@ -128,9 +128,9 @@ color: white;
 .section-about h2, .success p{
 
     margin: auto;
-    margin-bottom: 1.3em;
+    margin-bottom: 1em;
     font-weight: 400;
-    font-size: 1.3em;
+    font-size: 1.2em;
     font-family: "Cabin", sans-serif;
     width: 80%;
 
@@ -858,8 +858,9 @@ list-style: none;
     font-size: 1.7em;
     font-weight: 900;
 	color: white;
-    min-width: 1.9fr;
-    max-width: 1.9fr;
+    min-width: 2fr;
+    max-width: 2fr;
+    overflow: hidden;
 
 
 
@@ -973,6 +974,10 @@ list-style: none;
 
     .full-section{
         height: 50vh;
+    }
+
+    .aboutus{
+        width: 90%;
     }
 
 
