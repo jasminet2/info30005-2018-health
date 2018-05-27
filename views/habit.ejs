@@ -377,17 +377,34 @@ $(function(){
   };
 
   $('.levelup').on('click', function(){
-    if(parseInt($('#accpoints').html()) >= 100){
-    levelup();
-    $('.errormsg').html('Congratulations! You\'ve leveled up');
-    $('.modal').css('display', 'block');
-  } else {
+		$.ajax( { url: "/api/user/data",
+		  type: "GET",
+      success: function(data){
 
-    $('.errormsg').html('You need 100 Points to level up');
-    $('.modal').css('display', 'block');
+        if(data.points>100){
+						levelup();
+						$('.errormsg').html('Congratulations! You\'ve leveled up');
+				    $('.modal').css('display', 'block');
+				} else {
 
-  }
+					$('.errormsg').html('You need 100 Points to level up');
+					$('.modal').css('display', 'block');
+
+
+				}
+
+      },
+      error: function(xhr, status, err){
+        console.log(err);
+
+      }
+
+    });
+
+
   });
+
+	
 
 
   $('.modal').on('click', function(){
