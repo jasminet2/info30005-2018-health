@@ -18,6 +18,8 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/js/bootstrap-select.min.js"></script>
 <!-- handlebars.js -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.10/handlebars.js"></script>
+<!-- moment.js-->
+	<script src="https://cdn.jsdelivr.net/npm/moment@2.22.1/moment.min.js"></script>
 
 
 
@@ -126,6 +128,8 @@
 
 
 <script>
+	moment().format();
+
     var d = new Date();
     function formatDate(date) {
         var monthNames = [ "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
@@ -148,40 +152,66 @@ var icons = ["https://png.icons8.com/ios/30/27ae60/clock-filled.png",
 			"https://png.icons8.com/ios/30/1abc9c/saving-book-filled.png"];
 
 
-function addContent(category, titlename, timeFrame, streak, dataid, completed){
+function addContent(category, titlename, timeFrame, streak, dataid, completed, lastModified){
 
   var contentTemplate = Handlebars.compile($('#entry-template').text());
+
+
+
 
   var contentElement;
   var status = '';
   var disabled = '';
-  var today = new Date();
+  var modifiedDate = lastModified;
+  var currentDate  = moment().format('YYYYMMDD');
+  var currentWeek  = moment().format('YYYYww');
+  var currentMonth = moment().format('YYYYMM');
 
-  if(completed){
-          status = "Completed";
-          disabled = "disabled";
+  var lastDate = moment(modifiedDate).format('YYYYMMDD');
+  var lastWeek = moment(modifiedDate).format('YYYYww');
+  var lastMonth = moment(modifiedDate).format('YYYYMM');
 
-  } else {
-		status = '\u2713';
-	}
+
+
+  console.log(modifiedDate);
+  console.log(completed);
+
     //use switch statement to adjust habit row
   var habitTime;
   switch (timeFrame) {
 	case 1:
 		contentElement = $('#habit-daily');
+        if(currentDate > lastDate){
+            completed = false;
+        }
 		habitTime = "Days";
 		break;
 	case 2:
 		contentElement = $('#habit-weekly');
+		if(currentWeek > lastWeek){
+		    completed = false;
+		}
 		habitTime = "Weeks";
 		break;
 	case 3:
 		contentElement = $('#habit-monthly');
+		if(currentMonth > lastMonth){
+		    completed = false;
+		}
 		habitTime = "Months";
 		break;
 	default:
 		contentElement = $('#habit-daily');
+
+
   }
+    if(completed){
+        status = "Completed";
+        disabled = "disabled";
+
+    } else {
+        status = '\u2713';
+    }
 
   var newHabit = contentTemplate({
     imgURL: icons[parseInt(category)-1],
@@ -197,8 +227,6 @@ function addContent(category, titlename, timeFrame, streak, dataid, completed){
 
 
 }
-
-
 
 
 
@@ -222,7 +250,7 @@ $(function(){
 
         var i = 0;
         for (var habit in data) {
-          addContent(data[i].category, data[i].title, data[i].timeFrame, data[i].streak, data[i]._id, data[i].completed);
+          addContent(data[i].category, data[i].title, data[i].timeFrame, data[i].streak, data[i]._id, data[i].completed, data[i].lastModified);
 
           i++;
         }
@@ -249,7 +277,6 @@ $(function(){
         "timeFrame": $('#timeframe').val(),
         "streak": 0,
         "userID": '<%=userinfo.userName%>'
-				//"habitDate": document.lastModified
       },
 		  type: "POST",
       success: function(data){
