@@ -4,7 +4,7 @@ var Users = mongoose.model('user');
 var Habits = mongoose.model('habit');
 
 
-/*additional module to calculate the time difference, don't know it is useful or not*/
+
 var moment = require('moment');
 moment().format();
 
@@ -152,6 +152,7 @@ module.exports = {
           Habits.find({userID: req.session.user.userName},function(err, habit){
              var i=0;
 
+
              if(habit[0] && !err){
 
                  var currentDate  = moment().format('YYYYMMDD');
@@ -167,17 +168,17 @@ module.exports = {
                          switch(habit[i].timeFrame){
                            case 1:
                            if(currentDate>lastDate){
-                            habit[i].completed = !habit[i].completed;
+                                habit[i].completed = false;
                            }
                            break;
                            case 2:
                            if(currentWeek>lastWeek){
-                            habit[i].completed = !habit[i].completed;
+                            habit[i].completed = false;
                            }
                            break;
                            case 3:
                            if(currentMonth>lastMonth){
-                            habit[i].completed = !habit[i].completed;
+                            habit[i].completed = false;
                            }
                            break;
                            default:
@@ -211,7 +212,7 @@ module.exports = {
           "timeFrame": req.body.timeFrame,
           "streak": req.body.streak,
           "userID": req.body.userID,
-          "lastModified": moment()
+          "lastModified": req.body.habitDate
 
         });
 
