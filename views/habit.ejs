@@ -158,11 +158,8 @@ function addContent(category, titlename, timeFrame, streak, dataid, completed){
 
 
   var contentElement;
-  var status = '';
+  var status = '\u2713';
   var disabled = '';
-
-
-
 
     //use switch statement to adjust habit row
   var habitTime;
@@ -174,22 +171,23 @@ function addContent(category, titlename, timeFrame, streak, dataid, completed){
 	case 2:
 		contentElement = $('#habit-weekly');
 		habitTime = "Week(s)";
+
 		break;
 	  case 3:
 		contentElement = $('#habit-monthly');
+
 		habitTime = "Month(s)";
+
+
 		break;
 	default:
 		contentElement = $('#habit-daily');
-
 
   }
     if(completed){
         status = "Done";
         disabled = "disabled";
 
-    } else {
-        status = '\u2713';
     }
 
   var newHabit = contentTemplate({
@@ -228,7 +226,7 @@ $(function(){
 
         var i = 0;
         for (var habit in data) {
-          addContent(data[i].category, data[i].title, data[i].timeFrame, data[i].streak, data[i]._id, data[i].completed, data[i].lastModified);
+          addContent(data[i].category, data[i].title, data[i].timeFrame, data[i].streak, data[i]._id, data[i].completed);
 
           i++;
         }
@@ -382,17 +380,34 @@ $(function(){
   };
 
   $('.levelup').on('click', function(){
-    if(parseInt($('#accpoints').html()) >= 100){
-    levelup();
-    $('.errormsg').html('Congratulations! You\'ve leveled up');
-    $('.modal').css('display', 'block');
-  } else {
+		$.ajax( { url: "/api/user/data",
+		  type: "GET",
+      success: function(data){
 
-    $('.errormsg').html('You need 100 Points to level up');
-    $('.modal').css('display', 'block');
+        if(data.points>100){
+						levelup();
+						$('.errormsg').html('Congratulations! You\'ve leveled up');
+				    $('.modal').css('display', 'block');
+				} else {
 
-  }
+					$('.errormsg').html('You need 100 Points to level up');
+					$('.modal').css('display', 'block');
+
+
+				}
+
+      },
+      error: function(xhr, status, err){
+        console.log(err);
+
+      }
+
+    });
+
+
   });
+
+
 
 
   $('.modal').on('click', function(){
