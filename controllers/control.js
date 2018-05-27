@@ -159,13 +159,14 @@ module.exports = {
                  var currentWeek  = parseInt(moment().format('YYYYww'));
                  var currentMonth = parseInt(moment().format('YYYYMM'));
 
-
-
+                 var lastDate;
+                 var lastWeek;
+                 var lastMonth;
                  for(var habits in habit){
 
-                   var lastDate = parseInt(moment(habit[i].lastModified).format('YYYYMMDD'));
-                   var lastWeek = parseInt(moment(habit[i].lastModified).format('YYYYww'));
-                   var lastMonth = parseInt(moment(habit[i].lastModified).format('YYYYMM'));
+                    lastDate = parseInt(moment(habit[i].lastModified).format('YYYYMMDD'));
+                    lastWeek = parseInt(moment(habit[i].lastModified).format('YYYYww'));
+                    lastMonth = parseInt(moment(habit[i].lastModified).format('YYYYMM'));
 
                          switch(habit[i].timeFrame){
                            case 1:
